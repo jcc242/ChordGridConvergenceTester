@@ -1,0 +1,354 @@
+
+                                 *** chord ***
+
+                 Copyright (c) 2014-2019 CFD & Propulsion Group
+                           Colorado State University
+
+                             --- Chombo Library ---
+
+      Copyright (c) 2000-2019, The Regents of the University of California
+                    Applied Numerical Algorithms Group, LBNL
+
+=> Starting 2D chord with input file "AMRAdvectionCube_MMB.inputs"
+   Verbosity -------------------------- 1
+   Terminal Line Size ----------------- 80
+
+=> Serial mode
+
+=> Parameters
+
+-> Parameters for 'file'
+   Restart file ----------------------- not provided
+   Plot prefix ------------------------ plot/gaussianAdvect_MMB.plot.
+   Plot J ----------------------------- false
+   Plot JU ---------------------------- false
+   Plot flattening -------------------- false
+   Plot number of ghosts -------------- 0
+   Plot extra variables --------------- false
+   Plot mapped variables -------------- false
+   Plot wall distance field ----------- false
+   Plot interval ---------------------- 1
+   Plot period ------------------------ none
+   Checkpoint prefix ------------------ checkpoint/gaussianAdvect_MMB.chkpnt.
+   Checkpoint interval ---------------- 256
+
+-> Parameters for 'simulation'
+   Problem type ----------------------- Euler advection in cube
+
+-> Parameters for 'grid'
+   Number of cells -------------------- (32,32)
+   Computational domain length -------- (1.0000e+00,1.0000e+00)
+   Physical domain origin ------------- (0.0000e+00,0.0000e+00)
+   Domain periodicity ----------------- periodic,periodic
+
+-> Parameters for 'coordsys'
+   Coordinate system ------------------ multi-block Cartesian
+
+-> Parameters for 'solver'
+   Fixed dt --------------------------- 0.01
+   Limit on dt growth ----------------- 1.1
+   dt tolerance factor ---------------- 1.1
+   CFL number ------------------------- 1
+   Initial CFL number ----------------- 1
+   Initial time ----------------------- 0
+   Maximum steps ---------------------- 10000
+   Maximum time ----------------------- 2
+
+-> Parameters for 'limiter'
+   Limiting method -------------------- modified
+   Use PPM limiter -------------------- true
+   Limit face values ------------------ false
+   Use flattening --------------------- true
+   Face interpolation order ----------- 4
+   DC flattening ---------------------- false
+   DC flatten tolerance --------------- 0.2
+   DC flatten tolerance (mass fraction)  0.05
+   Use face construction order reduction  false
+   Use artificial viscosity ----------- true
+   Artificial viscosity coefficient --- 0.3
+   Fourth-order artificial viscosity coefficient  0.42
+
+
+-> Parameters for 'physics'
+   Fluid models:
+   Inertial (hyperbolic terms in Navier-Stokes)
+
+-> Parameters for 'fluid'
+   Gas constant ----------------------- 287
+   Specific heat ratio ---------------- 1.4
+   Density ---------------------------- 1.4
+   Temperature ------------------------ 0.0024888
+   Thermal conductivity --------------- constant 0.025326
+   Dynamic viscosity ------------------ constant 1.7894e-05
+   Reynolds number -------------------- 1
+
+-> Parameters for 'AMR'
+   Maximum number of AMR levels ------- 0
+   Refinement ratios ------------------ 1
+   Regrid intervals ------------------- 1
+   Tag buffer size -------------------- 2
+   Maximum box size ------------------- 32
+   Fill ratio ------------------------- 0.75
+   Grid buffer size ------------------- 1
+   Block factor ----------------------- 8
+   Use subcycling --------------------- true
+
+-> Initial and boundary conditions: Euler advection cube
+   Delta density ---------------------- 1.4000e-01
+   Velocity --------------------------- (1.0000e+00,5.0000e-01)
+   Size of Gaussian (domain Dim.) ----- 1.0000e-01
+   Center of Gaussian (domain  Dim.) -- (5.0000e-01,5.0000e-01)
+   Maximum radius (domain Dim.) ------- 5.0000e-01
+   Tagging threshold ------------------ 1.0000e-02
+
+-> Boundary states and types:
+   Defined boundary states:
+   Defined boundary types:
+
+-> Physics: compressible Navier-Stokes
+   Gas law ---------------------------- ideal
+   Specific heat ratio ---------------- 1.40000e+00
+   Specific gas constant -------------- 2.87000e+02 J/kg-K
+   Gravitational constant ------------- 9.80665e+00 m/s^2
+
+
+=> Begin computation
+coarse time step   0  old time = 0.000000e+00  old dt = 1.000000e-02
+coarse time step   1  old time = 1.000000e-02  old dt = 1.000000e-02
+coarse time step   2  old time = 2.000000e-02  old dt = 1.000000e-02
+coarse time step   3  old time = 3.000000e-02  old dt = 1.000000e-02
+coarse time step   4  old time = 4.000000e-02  old dt = 1.000000e-02
+coarse time step   5  old time = 5.000000e-02  old dt = 1.000000e-02
+coarse time step   6  old time = 6.000000e-02  old dt = 1.000000e-02
+coarse time step   7  old time = 7.000000e-02  old dt = 1.000000e-02
+coarse time step   8  old time = 8.000000e-02  old dt = 1.000000e-02
+coarse time step   9  old time = 9.000000e-02  old dt = 1.000000e-02
+coarse time step  10  old time = 1.000000e-01  old dt = 1.000000e-02
+coarse time step  11  old time = 1.100000e-01  old dt = 1.000000e-02
+coarse time step  12  old time = 1.200000e-01  old dt = 1.000000e-02
+coarse time step  13  old time = 1.300000e-01  old dt = 1.000000e-02
+coarse time step  14  old time = 1.400000e-01  old dt = 1.000000e-02
+coarse time step  15  old time = 1.500000e-01  old dt = 1.000000e-02
+coarse time step  16  old time = 1.600000e-01  old dt = 1.000000e-02
+coarse time step  17  old time = 1.700000e-01  old dt = 1.000000e-02
+coarse time step  18  old time = 1.800000e-01  old dt = 1.000000e-02
+coarse time step  19  old time = 1.900000e-01  old dt = 1.000000e-02
+coarse time step  20  old time = 2.000000e-01  old dt = 1.000000e-02
+coarse time step  21  old time = 2.100000e-01  old dt = 1.000000e-02
+coarse time step  22  old time = 2.200000e-01  old dt = 1.000000e-02
+coarse time step  23  old time = 2.300000e-01  old dt = 1.000000e-02
+coarse time step  24  old time = 2.400000e-01  old dt = 1.000000e-02
+coarse time step  25  old time = 2.500000e-01  old dt = 1.000000e-02
+coarse time step  26  old time = 2.600000e-01  old dt = 1.000000e-02
+coarse time step  27  old time = 2.700000e-01  old dt = 1.000000e-02
+coarse time step  28  old time = 2.800000e-01  old dt = 1.000000e-02
+coarse time step  29  old time = 2.900000e-01  old dt = 1.000000e-02
+coarse time step  30  old time = 3.000000e-01  old dt = 1.000000e-02
+coarse time step  31  old time = 3.100000e-01  old dt = 1.000000e-02
+coarse time step  32  old time = 3.200000e-01  old dt = 1.000000e-02
+coarse time step  33  old time = 3.300000e-01  old dt = 1.000000e-02
+coarse time step  34  old time = 3.400000e-01  old dt = 1.000000e-02
+coarse time step  35  old time = 3.500000e-01  old dt = 1.000000e-02
+coarse time step  36  old time = 3.600000e-01  old dt = 1.000000e-02
+coarse time step  37  old time = 3.700000e-01  old dt = 1.000000e-02
+coarse time step  38  old time = 3.800000e-01  old dt = 1.000000e-02
+coarse time step  39  old time = 3.900000e-01  old dt = 1.000000e-02
+coarse time step  40  old time = 4.000000e-01  old dt = 1.000000e-02
+coarse time step  41  old time = 4.100000e-01  old dt = 1.000000e-02
+coarse time step  42  old time = 4.200000e-01  old dt = 1.000000e-02
+coarse time step  43  old time = 4.300000e-01  old dt = 1.000000e-02
+coarse time step  44  old time = 4.400000e-01  old dt = 1.000000e-02
+coarse time step  45  old time = 4.500000e-01  old dt = 1.000000e-02
+coarse time step  46  old time = 4.600000e-01  old dt = 1.000000e-02
+coarse time step  47  old time = 4.700000e-01  old dt = 1.000000e-02
+coarse time step  48  old time = 4.800000e-01  old dt = 1.000000e-02
+coarse time step  49  old time = 4.900000e-01  old dt = 1.000000e-02
+coarse time step  50  old time = 5.000000e-01  old dt = 1.000000e-02
+coarse time step  51  old time = 5.100000e-01  old dt = 1.000000e-02
+coarse time step  52  old time = 5.200000e-01  old dt = 1.000000e-02
+coarse time step  53  old time = 5.300000e-01  old dt = 1.000000e-02
+coarse time step  54  old time = 5.400000e-01  old dt = 1.000000e-02
+coarse time step  55  old time = 5.500000e-01  old dt = 1.000000e-02
+coarse time step  56  old time = 5.600000e-01  old dt = 1.000000e-02
+coarse time step  57  old time = 5.700000e-01  old dt = 1.000000e-02
+coarse time step  58  old time = 5.800000e-01  old dt = 1.000000e-02
+coarse time step  59  old time = 5.900000e-01  old dt = 1.000000e-02
+coarse time step  60  old time = 6.000000e-01  old dt = 1.000000e-02
+coarse time step  61  old time = 6.100000e-01  old dt = 1.000000e-02
+coarse time step  62  old time = 6.200000e-01  old dt = 1.000000e-02
+coarse time step  63  old time = 6.300000e-01  old dt = 1.000000e-02
+coarse time step  64  old time = 6.400000e-01  old dt = 1.000000e-02
+coarse time step  65  old time = 6.500000e-01  old dt = 1.000000e-02
+coarse time step  66  old time = 6.600000e-01  old dt = 1.000000e-02
+coarse time step  67  old time = 6.700000e-01  old dt = 1.000000e-02
+coarse time step  68  old time = 6.800000e-01  old dt = 1.000000e-02
+coarse time step  69  old time = 6.900000e-01  old dt = 1.000000e-02
+coarse time step  70  old time = 7.000000e-01  old dt = 1.000000e-02
+coarse time step  71  old time = 7.100000e-01  old dt = 1.000000e-02
+coarse time step  72  old time = 7.200000e-01  old dt = 1.000000e-02
+coarse time step  73  old time = 7.300000e-01  old dt = 1.000000e-02
+coarse time step  74  old time = 7.400000e-01  old dt = 1.000000e-02
+coarse time step  75  old time = 7.500000e-01  old dt = 1.000000e-02
+coarse time step  76  old time = 7.600000e-01  old dt = 1.000000e-02
+coarse time step  77  old time = 7.700000e-01  old dt = 1.000000e-02
+coarse time step  78  old time = 7.800000e-01  old dt = 1.000000e-02
+coarse time step  79  old time = 7.900000e-01  old dt = 1.000000e-02
+coarse time step  80  old time = 8.000000e-01  old dt = 1.000000e-02
+coarse time step  81  old time = 8.100000e-01  old dt = 1.000000e-02
+coarse time step  82  old time = 8.200000e-01  old dt = 1.000000e-02
+coarse time step  83  old time = 8.300000e-01  old dt = 1.000000e-02
+coarse time step  84  old time = 8.400000e-01  old dt = 1.000000e-02
+coarse time step  85  old time = 8.500000e-01  old dt = 1.000000e-02
+coarse time step  86  old time = 8.600000e-01  old dt = 1.000000e-02
+coarse time step  87  old time = 8.700000e-01  old dt = 1.000000e-02
+coarse time step  88  old time = 8.800000e-01  old dt = 1.000000e-02
+coarse time step  89  old time = 8.900000e-01  old dt = 1.000000e-02
+coarse time step  90  old time = 9.000000e-01  old dt = 1.000000e-02
+coarse time step  91  old time = 9.100000e-01  old dt = 1.000000e-02
+coarse time step  92  old time = 9.200000e-01  old dt = 1.000000e-02
+coarse time step  93  old time = 9.300000e-01  old dt = 1.000000e-02
+coarse time step  94  old time = 9.400000e-01  old dt = 1.000000e-02
+coarse time step  95  old time = 9.500000e-01  old dt = 1.000000e-02
+coarse time step  96  old time = 9.600000e-01  old dt = 1.000000e-02
+coarse time step  97  old time = 9.700000e-01  old dt = 1.000000e-02
+coarse time step  98  old time = 9.800000e-01  old dt = 1.000000e-02
+coarse time step  99  old time = 9.900000e-01  old dt = 1.000000e-02
+coarse time step 100  old time = 1.000000e+00  old dt = 1.000000e-02
+coarse time step 101  old time = 1.010000e+00  old dt = 1.000000e-02
+coarse time step 102  old time = 1.020000e+00  old dt = 1.000000e-02
+coarse time step 103  old time = 1.030000e+00  old dt = 1.000000e-02
+coarse time step 104  old time = 1.040000e+00  old dt = 1.000000e-02
+coarse time step 105  old time = 1.050000e+00  old dt = 1.000000e-02
+coarse time step 106  old time = 1.060000e+00  old dt = 1.000000e-02
+coarse time step 107  old time = 1.070000e+00  old dt = 1.000000e-02
+coarse time step 108  old time = 1.080000e+00  old dt = 1.000000e-02
+coarse time step 109  old time = 1.090000e+00  old dt = 1.000000e-02
+coarse time step 110  old time = 1.100000e+00  old dt = 1.000000e-02
+coarse time step 111  old time = 1.110000e+00  old dt = 1.000000e-02
+coarse time step 112  old time = 1.120000e+00  old dt = 1.000000e-02
+coarse time step 113  old time = 1.130000e+00  old dt = 1.000000e-02
+coarse time step 114  old time = 1.140000e+00  old dt = 1.000000e-02
+coarse time step 115  old time = 1.150000e+00  old dt = 1.000000e-02
+coarse time step 116  old time = 1.160000e+00  old dt = 1.000000e-02
+coarse time step 117  old time = 1.170000e+00  old dt = 1.000000e-02
+coarse time step 118  old time = 1.180000e+00  old dt = 1.000000e-02
+coarse time step 119  old time = 1.190000e+00  old dt = 1.000000e-02
+coarse time step 120  old time = 1.200000e+00  old dt = 1.000000e-02
+coarse time step 121  old time = 1.210000e+00  old dt = 1.000000e-02
+coarse time step 122  old time = 1.220000e+00  old dt = 1.000000e-02
+coarse time step 123  old time = 1.230000e+00  old dt = 1.000000e-02
+coarse time step 124  old time = 1.240000e+00  old dt = 1.000000e-02
+coarse time step 125  old time = 1.250000e+00  old dt = 1.000000e-02
+coarse time step 126  old time = 1.260000e+00  old dt = 1.000000e-02
+coarse time step 127  old time = 1.270000e+00  old dt = 1.000000e-02
+coarse time step 128  old time = 1.280000e+00  old dt = 1.000000e-02
+coarse time step 129  old time = 1.290000e+00  old dt = 1.000000e-02
+coarse time step 130  old time = 1.300000e+00  old dt = 1.000000e-02
+coarse time step 131  old time = 1.310000e+00  old dt = 1.000000e-02
+coarse time step 132  old time = 1.320000e+00  old dt = 1.000000e-02
+coarse time step 133  old time = 1.330000e+00  old dt = 1.000000e-02
+coarse time step 134  old time = 1.340000e+00  old dt = 1.000000e-02
+coarse time step 135  old time = 1.350000e+00  old dt = 1.000000e-02
+coarse time step 136  old time = 1.360000e+00  old dt = 1.000000e-02
+coarse time step 137  old time = 1.370000e+00  old dt = 1.000000e-02
+coarse time step 138  old time = 1.380000e+00  old dt = 1.000000e-02
+coarse time step 139  old time = 1.390000e+00  old dt = 1.000000e-02
+coarse time step 140  old time = 1.400000e+00  old dt = 1.000000e-02
+coarse time step 141  old time = 1.410000e+00  old dt = 1.000000e-02
+coarse time step 142  old time = 1.420000e+00  old dt = 1.000000e-02
+coarse time step 143  old time = 1.430000e+00  old dt = 1.000000e-02
+coarse time step 144  old time = 1.440000e+00  old dt = 1.000000e-02
+coarse time step 145  old time = 1.450000e+00  old dt = 1.000000e-02
+coarse time step 146  old time = 1.460000e+00  old dt = 1.000000e-02
+coarse time step 147  old time = 1.470000e+00  old dt = 1.000000e-02
+coarse time step 148  old time = 1.480000e+00  old dt = 1.000000e-02
+coarse time step 149  old time = 1.490000e+00  old dt = 1.000000e-02
+coarse time step 150  old time = 1.500000e+00  old dt = 1.000000e-02
+coarse time step 151  old time = 1.510000e+00  old dt = 1.000000e-02
+coarse time step 152  old time = 1.520000e+00  old dt = 1.000000e-02
+coarse time step 153  old time = 1.530000e+00  old dt = 1.000000e-02
+coarse time step 154  old time = 1.540000e+00  old dt = 1.000000e-02
+coarse time step 155  old time = 1.550000e+00  old dt = 1.000000e-02
+coarse time step 156  old time = 1.560000e+00  old dt = 1.000000e-02
+coarse time step 157  old time = 1.570000e+00  old dt = 1.000000e-02
+coarse time step 158  old time = 1.580000e+00  old dt = 1.000000e-02
+coarse time step 159  old time = 1.590000e+00  old dt = 1.000000e-02
+coarse time step 160  old time = 1.600000e+00  old dt = 1.000000e-02
+coarse time step 161  old time = 1.610000e+00  old dt = 1.000000e-02
+coarse time step 162  old time = 1.620000e+00  old dt = 1.000000e-02
+coarse time step 163  old time = 1.630000e+00  old dt = 1.000000e-02
+coarse time step 164  old time = 1.640000e+00  old dt = 1.000000e-02
+coarse time step 165  old time = 1.650000e+00  old dt = 1.000000e-02
+coarse time step 166  old time = 1.660000e+00  old dt = 1.000000e-02
+coarse time step 167  old time = 1.670000e+00  old dt = 1.000000e-02
+coarse time step 168  old time = 1.680000e+00  old dt = 1.000000e-02
+coarse time step 169  old time = 1.690000e+00  old dt = 1.000000e-02
+coarse time step 170  old time = 1.700000e+00  old dt = 1.000000e-02
+coarse time step 171  old time = 1.710000e+00  old dt = 1.000000e-02
+coarse time step 172  old time = 1.720000e+00  old dt = 1.000000e-02
+coarse time step 173  old time = 1.730000e+00  old dt = 1.000000e-02
+coarse time step 174  old time = 1.740000e+00  old dt = 1.000000e-02
+coarse time step 175  old time = 1.750000e+00  old dt = 1.000000e-02
+coarse time step 176  old time = 1.760000e+00  old dt = 1.000000e-02
+coarse time step 177  old time = 1.770000e+00  old dt = 1.000000e-02
+coarse time step 178  old time = 1.780000e+00  old dt = 1.000000e-02
+coarse time step 179  old time = 1.790000e+00  old dt = 1.000000e-02
+coarse time step 180  old time = 1.800000e+00  old dt = 1.000000e-02
+coarse time step 181  old time = 1.810000e+00  old dt = 1.000000e-02
+coarse time step 182  old time = 1.820000e+00  old dt = 1.000000e-02
+coarse time step 183  old time = 1.830000e+00  old dt = 1.000000e-02
+coarse time step 184  old time = 1.840000e+00  old dt = 1.000000e-02
+coarse time step 185  old time = 1.850000e+00  old dt = 1.000000e-02
+coarse time step 186  old time = 1.860000e+00  old dt = 1.000000e-02
+coarse time step 187  old time = 1.870000e+00  old dt = 1.000000e-02
+coarse time step 188  old time = 1.880000e+00  old dt = 1.000000e-02
+coarse time step 189  old time = 1.890000e+00  old dt = 1.000000e-02
+coarse time step 190  old time = 1.900000e+00  old dt = 1.000000e-02
+coarse time step 191  old time = 1.910000e+00  old dt = 1.000000e-02
+coarse time step 192  old time = 1.920000e+00  old dt = 1.000000e-02
+coarse time step 193  old time = 1.930000e+00  old dt = 1.000000e-02
+coarse time step 194  old time = 1.940000e+00  old dt = 1.000000e-02
+coarse time step 195  old time = 1.950000e+00  old dt = 1.000000e-02
+coarse time step 196  old time = 1.960000e+00  old dt = 1.000000e-02
+coarse time step 197  old time = 1.970000e+00  old dt = 1.000000e-02
+coarse time step 198  old time = 1.980000e+00  old dt = 1.000000e-02
+coarse time step 199  old time = 1.990000e+00  old dt = 1.000000e-02
+
+=> End computation
+-> Error norms at time 2.000000000000001e+00
+   Component 0: density
+   L1  (error) ------------------------ 5.808150964390555e-04
+   L2  (error) ------------------------ 2.085046073061537e-03
+   max (error) ------------------------ 2.390316991534558e-02
+   Component 1: x-momentum
+   L1  (error) ------------------------ 5.808150964390320e-04
+   L2  (error) ------------------------ 2.085046073061541e-03
+   max (error) ------------------------ 2.390316991534580e-02
+   Component 2: y-momentum
+   L1  (error) ------------------------ 2.904075482195610e-04
+   L2  (error) ------------------------ 1.042523036530741e-03
+   max (error) ------------------------ 1.195158495767235e-02
+   Component 3: energy-density
+   L1  (error) ------------------------ 3.630094352744901e-04
+   L2  (error) ------------------------ 1.303153795663432e-03
+   max (error) ------------------------ 1.493948119709021e-02
+Vector 17QuadratureElement: 96 bytes (0 Mb)
+Vector 21IndicesTransformation: 384 bytes (0 Mb)
+Vector 3Box: -240 bytes (0 Mb)
+Vector 5TupleI13BlockBoundaryLm4EE: 1152 bytes (0 Mb)
+Vector 6VectorI21IndicesTransformationE: 128 bytes (0 Mb)
+Vector 9BlockInfo: 288 bytes (0 Mb)
+Vector P11NewCoordSys: 32 bytes (0 Mb)
+Vector P7BaseFabI21IndicesTransformation17DefaultArrayAllocIS0_L15ArrayClassIndex1EEE: 32 bytes (0 Mb)
+Vector P7BaseFabIi17DefaultArrayAllocIiL15ArrayClassIndex1EEE: 64 bytes (0 Mb)
+Vector d: 32 bytes (0 Mb)
+Arena 12DCFlattening: 24 bytes (0 Mb)
+Arena 6CNSIBC: 168 bytes (0 Mb)
+Arena 10CRDPhysics: 40 bytes (0 Mb)
+Arena 18MultiBlockCoordSys: 344 bytes (0 Mb)
+Arena 12TurbModeling: 16 bytes (0 Mb)
+Registered class BaseFab<i>: 448 bytes (0.000427246 Mb)
+Registered class BaseFab<21IndicesTransformation>: 1728 bytes (0.00164795 Mb)
+---------------------------------
+Total Unfreed : 4736 bytes (0 Mb)
+peak memory usage: 2121874 bytes (2 Mb)
