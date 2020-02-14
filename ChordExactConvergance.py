@@ -35,7 +35,7 @@ def extractErrors_ChordExact(filename):
                     errors[compNum].append(findFloatsInString(line)[0])
         return [errors, componentNames, errorNames]
 
-def convergenceFromChordOutput(files, gridSize, dim):
+def convergenceFromChordOutput(files, gridSize, dim, output):
     errors=[]
     componentNames=''
     errorNames=''
@@ -47,11 +47,14 @@ def convergenceFromChordOutput(files, gridSize, dim):
             errorNames = en
         assert componentNames == cn
         assert errorNames == en
-    convergeReport(errors, gridSize, dim, componentNames, errorNames)
+    output(errors, gridSize, dim, componentNames, errorNames)
 
 #files = ['error32.out', 'error64.out', 'error128.out']
 files = ['advect32.out', 'advect64.out', 'advect128.out', 'advect256.out', 'advect512.out']
 dim = 2
 #gridSize = [32**dim, 64**dim, 128**dim]
 gridSize = [32**dim, 64**dim, 128**dim, 256**dim, 512**dim]
-convergenceFromChordOutput(files, gridSize, dim)
+
+# output type needs to be either convergeReport or convergeReportFiles
+output_type = convergeReport
+convergenceFromChordOutput(files, gridSize, dim, output_type)
