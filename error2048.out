@@ -21,7 +21,7 @@
 -> Parameters for 'file'
    Restart file ----------------------- not provided
    Plot prefix ------------------------ plot/20210111SinFunctionTestSin21_GridCo
-                                        nverge_64Cells/gaussianAdvect.plot.
+                                        nverge_2048Cells/gaussianAdvect.plot.
    Plot J ----------------------------- false
    Plot JU ---------------------------- false
    Plot DACFDCheck -------------------- false
@@ -32,16 +32,16 @@
    Plot wall distance field ----------- false
    Plot interval ---------------------- 1000
    Plot period ------------------------ none
-   Checkpoint prefix ------------------ checkpoint/20210111SinFunctionTestSin21_
-                                        GridConverge_64Cells/gaussianAdvect.chkp
-                                        nt.
+   Checkpoint prefix ------------------ checkpoint/20200111SinFunctionTestSin21_
+                                        GridConverge_2048Cells/gaussianAdvect.ch
+                                        kpnt.
    Checkpoint interval ---------------- 1000
 
 -> Parameters for 'simulation'
    Problem type ----------------------- Euler sin functions in a cube
 
 -> Parameters for 'grid'
-   Number of cells -------------------- (64,16)
+   Number of cells -------------------- (2048,512)
    Computational domain length -------- (1.0000e+00,2.5000e-01)
    Physical domain origin ------------- (0.0000e+00,0.0000e+00)
    Domain periodicity ----------------- (periodic,periodic)
@@ -54,7 +54,7 @@
 
 -> Parameters for 'solver'
    Time Integration Method ------------ RK4
-   Fixed dt --------------------------- 0.0064
+   Fixed dt --------------------------- 0.0002
    Limit on dt growth ----------------- 1.1
    dt tolerance factor ---------------- 1.1
    CFL number ------------------------- 1
@@ -129,26 +129,26 @@
 
 WW Stack memory not aligned to page as intended due to missing posix_memalign
    (run configure in top-level directory of Chombo and re-compile)
--> Stack allocation on thread from 0x7fb602fff010 to 0x7fb603fff010: 16 MiB
+-> Stack allocation on thread from 0x7fec70d40010 to 0x7fec71d40010: 16 MiB
 => Begin computation
 => End computation
--> Error norms at time 2.003199999999992e+00
+-> Error norms at time 1.999999999999812e+00
    Component 0: density
-   L1  (error) ------------------------ 3.887418915099344e-02
-   L2  (error) ------------------------ 4.311863722611193e-02
-   max (error) ------------------------ 6.077654775870012e-02
+   L1  (error) ------------------------ 6.748484297427462e-06
+   L2  (error) ------------------------ 7.495678693560280e-06
+   max (error) ------------------------ 1.060048151035886e-05
    Component 1: x-momentum
-   L1  (error) ------------------------ 3.887418915099350e-02
-   L2  (error) ------------------------ 4.311863722611196e-02
-   max (error) ------------------------ 6.077654775870123e-02
+   L1  (error) ------------------------ 6.748484297549109e-06
+   L2  (error) ------------------------ 7.495678693663931e-06
+   max (error) ------------------------ 1.060048151124704e-05
    Component 2: y-momentum
    L1  (error) ------------------------ 0.000000000000000e+00
    L2  (error) ------------------------ 0.000000000000000e+00
    max (error) ------------------------ 0.000000000000000e+00
    Component 3: energy-density
-   L1  (error) ------------------------ 1.943709457549649e-02
-   L2  (error) ------------------------ 2.155931861305595e-02
-   max (error) ------------------------ 3.038827387935239e-02
+   L1  (error) ------------------------ 3.374242148828982e-06
+   L2  (error) ------------------------ 3.747839346951666e-06
+   max (error) ------------------------ 5.300240760064412e-06
 Vector 17QuadratureElement: 24 bytes (0 Mb)
 Vector 21IndicesTransformation: 24 bytes (0 Mb)
 Vector 3Box: 20 bytes (0 Mb)
@@ -171,6 +171,6 @@ Registered class BaseFab<i>: 108 bytes (0.000102997 Mb)
 Registered class BaseFab<21IndicesTransformation>: 432 bytes (0.000411987 Mb)
 ---------------------------------
 Total Unfreed : 2096 bytes (0 Mb)
-peak memory usage: 1426568 bytes (1 Mb)
--> Stack deallocation on thread at 0x7fb602fff010 with maximum usage of 732.984
-   KiB
+peak memory usage: 260127548 bytes (248 Mb)
+-> Stack deallocation on thread at 0x7fec70d40010 with maximum usage of 2.61717
+   MiB

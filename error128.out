@@ -1,68 +1,80 @@
-
                                  *** chord ***
 
-                 Copyright (c) 2014-2019 CFD & Propulsion Group
+                 Copyright (c) 2014-2020 CFD & Propulsion Group
                            Colorado State University
 
                              --- Chombo Library ---
 
-      Copyright (c) 2000-2019, The Regents of the University of California
+      Copyright (c) 2000-2020, The Regents of the University of California
                     Applied Numerical Algorithms Group, LBNL
 
-=> Starting 2D chord with input file "AMRAdvectionCube_MMB.inputs"
+=> Starting 2D chord with input file "AMRAdvectionSinFunction.inputs"
    Verbosity -------------------------- 1
+   Verbose time step data ------------- false
    Terminal Line Size ----------------- 80
 
-=> Serial mode
+=> Parallel mode
+-> MPI: this is processor 0 of 3 (4 total)
 
 => Parameters
 
 -> Parameters for 'file'
    Restart file ----------------------- not provided
-   Plot prefix ------------------------ plot/gaussianAdvect_MMB.plot.
+   Plot prefix ------------------------ plot/20210111SinFunctionTestSin21_GridCo
+                                        nverge_128Cells/gaussianAdvect.plot.
    Plot J ----------------------------- false
    Plot JU ---------------------------- false
+   Plot DACFDCheck -------------------- false
    Plot flattening -------------------- false
    Plot number of ghosts -------------- 0
    Plot extra variables --------------- false
    Plot mapped variables -------------- false
    Plot wall distance field ----------- false
-   Plot interval ---------------------- 1
+   Plot interval ---------------------- 1000
    Plot period ------------------------ none
-   Checkpoint prefix ------------------ checkpoint/gaussianAdvect_MMB.chkpnt.
-   Checkpoint interval ---------------- 256
+   Checkpoint prefix ------------------ checkpoint/20210111SinFunctionTestSin21_
+                                        GridConverge_128Cells/gaussianAdvect.chk
+                                        pnt.
+   Checkpoint interval ---------------- 1000
 
 -> Parameters for 'simulation'
-   Problem type ----------------------- Euler advection in cube
+   Problem type ----------------------- Euler sin functions in a cube
 
 -> Parameters for 'grid'
-   Number of cells -------------------- (128,128)
-   Computational domain length -------- (1.0000e+00,1.0000e+00)
+   Number of cells -------------------- (128,32)
+   Computational domain length -------- (1.0000e+00,2.5000e-01)
    Physical domain origin ------------- (0.0000e+00,0.0000e+00)
-   Domain periodicity ----------------- periodic,periodic
+   Domain periodicity ----------------- (periodic,periodic)
 
 -> Parameters for 'coordsys'
-   Coordinate system ------------------ multi-block Cartesian
+   Coordinate system ------------------ Cartesian
+     Origin --------------------------- (0.0000e+00,0.0000e+00)
+     Stretch -------------------------- (1.0000e+00,1.0000e+00)
+     Physical length ------------------ (1.0000e+00,2.5000e-01)
 
 -> Parameters for 'solver'
-   Fixed dt --------------------------- 0.0025
+   Time Integration Method ------------ RK4
+   Fixed dt --------------------------- 0.0032
    Limit on dt growth ----------------- 1.1
    dt tolerance factor ---------------- 1.1
    CFL number ------------------------- 1
    Initial CFL number ----------------- 1
    Initial time ----------------------- 0
-   Maximum steps ---------------------- 10000
+   Maximum steps ---------------------- 100000
    Maximum time ----------------------- 2
 
+-> Parameters for 'ark'
+   Time Step Method ------------------- Explicit Runge Kutta
+
 -> Parameters for 'limiter'
-   Limiting method -------------------- modified
+   Limiting method -------------------- fourth-order PPM
    Use PPM limiter -------------------- true
    Limit face values ------------------ false
    Use flattening --------------------- true
    Face interpolation order ----------- 4
+   Diffusive order -------------------- 4
+   Reaction order --------------------- 4
    DC flattening ---------------------- false
-   DC flatten tolerance --------------- 0.2
-   DC flatten tolerance (mass fraction)  0.05
    Use face construction order reduction  false
    Use artificial viscosity ----------- true
    Artificial viscosity coefficient --- 0.3
@@ -86,24 +98,16 @@
    Maximum number of AMR levels ------- 0
    Refinement ratios ------------------ 1
    Regrid intervals ------------------- 1
-   Tag buffer size -------------------- 2
-   Maximum box size ------------------- 32
+   Tag buffer size -------------------- 6
+   Base level ------------------------- 0
+   Maximum box size ------------------- 64
    Fill ratio ------------------------- 0.75
    Grid buffer size ------------------- 1
-   Block factor ----------------------- 8
+   Block factor (minimum box size) ---- 8
    Use subcycling --------------------- true
 
--> Initial and boundary conditions: Euler advection cube
-   Delta density ---------------------- 1.4000e-01
-   Velocity --------------------------- (1.0000e+00,5.0000e-01)
-   Size of Gaussian (domain Dim.) ----- 1.0000e-01
-   Center of Gaussian (domain  Dim.) -- (5.0000e-01,5.0000e-01)
-   Maximum radius (domain Dim.) ------- 5.0000e-01
-   Tagging threshold ------------------ 1.0000e-02
-
--> Boundary states and types:
-   Defined boundary states:
-   Defined boundary types:
+-> Parameters for 'threads'
+   Use threads ------------------------ false
 
 -> Physics: compressible Navier-Stokes
    Gas law ---------------------------- ideal
@@ -111,844 +115,62 @@
    Specific gas constant -------------- 2.87000e+02 J/kg-K
    Gravitational constant ------------- 9.80665e+00 m/s^2
 
+-> Initial and boundary conditions: Euler advection cube with sin function
+   Delta density ---------------------- 1.4000e-01
+   Velocity --------------------------- (1.0000e+00,0.0000e+00)
+   Size of Gaussian (domain Dim.) ----- 2.5000e-02
+   Center of Gaussian (domain  Dim.) -- (5.0000e-01,5.0000e-01)
+   Maximum radius (domain Dim.) ------- 1.2500e-01
+   Tagging threshold ------------------ 0.0000e+00
 
+
+-> Boundary states and types:
+   Defined boundary types:
+
+WW Stack memory not aligned to page as intended due to missing posix_memalign
+   (run configure in top-level directory of Chombo and re-compile)
+-> Stack allocation on thread from 0x7ff636fff010 to 0x7ff637fff010: 16 MiB
 => Begin computation
-coarse time step   0  old time = 0.000000e+00  old dt = 2.500000e-03
-coarse time step   1  old time = 2.500000e-03  old dt = 2.500000e-03
-coarse time step   2  old time = 5.000000e-03  old dt = 2.500000e-03
-coarse time step   3  old time = 7.500000e-03  old dt = 2.500000e-03
-coarse time step   4  old time = 1.000000e-02  old dt = 2.500000e-03
-coarse time step   5  old time = 1.250000e-02  old dt = 2.500000e-03
-coarse time step   6  old time = 1.500000e-02  old dt = 2.500000e-03
-coarse time step   7  old time = 1.750000e-02  old dt = 2.500000e-03
-coarse time step   8  old time = 2.000000e-02  old dt = 2.500000e-03
-coarse time step   9  old time = 2.250000e-02  old dt = 2.500000e-03
-coarse time step  10  old time = 2.500000e-02  old dt = 2.500000e-03
-coarse time step  11  old time = 2.750000e-02  old dt = 2.500000e-03
-coarse time step  12  old time = 3.000000e-02  old dt = 2.500000e-03
-coarse time step  13  old time = 3.250000e-02  old dt = 2.500000e-03
-coarse time step  14  old time = 3.500000e-02  old dt = 2.500000e-03
-coarse time step  15  old time = 3.750000e-02  old dt = 2.500000e-03
-coarse time step  16  old time = 4.000000e-02  old dt = 2.500000e-03
-coarse time step  17  old time = 4.250000e-02  old dt = 2.500000e-03
-coarse time step  18  old time = 4.500000e-02  old dt = 2.500000e-03
-coarse time step  19  old time = 4.750000e-02  old dt = 2.500000e-03
-coarse time step  20  old time = 5.000000e-02  old dt = 2.500000e-03
-coarse time step  21  old time = 5.250000e-02  old dt = 2.500000e-03
-coarse time step  22  old time = 5.500000e-02  old dt = 2.500000e-03
-coarse time step  23  old time = 5.750000e-02  old dt = 2.500000e-03
-coarse time step  24  old time = 6.000000e-02  old dt = 2.500000e-03
-coarse time step  25  old time = 6.250000e-02  old dt = 2.500000e-03
-coarse time step  26  old time = 6.500000e-02  old dt = 2.500000e-03
-coarse time step  27  old time = 6.750000e-02  old dt = 2.500000e-03
-coarse time step  28  old time = 7.000000e-02  old dt = 2.500000e-03
-coarse time step  29  old time = 7.250000e-02  old dt = 2.500000e-03
-coarse time step  30  old time = 7.500000e-02  old dt = 2.500000e-03
-coarse time step  31  old time = 7.750000e-02  old dt = 2.500000e-03
-coarse time step  32  old time = 8.000000e-02  old dt = 2.500000e-03
-coarse time step  33  old time = 8.250000e-02  old dt = 2.500000e-03
-coarse time step  34  old time = 8.500000e-02  old dt = 2.500000e-03
-coarse time step  35  old time = 8.750000e-02  old dt = 2.500000e-03
-coarse time step  36  old time = 9.000000e-02  old dt = 2.500000e-03
-coarse time step  37  old time = 9.250000e-02  old dt = 2.500000e-03
-coarse time step  38  old time = 9.500000e-02  old dt = 2.500000e-03
-coarse time step  39  old time = 9.750000e-02  old dt = 2.500000e-03
-coarse time step  40  old time = 1.000000e-01  old dt = 2.500000e-03
-coarse time step  41  old time = 1.025000e-01  old dt = 2.500000e-03
-coarse time step  42  old time = 1.050000e-01  old dt = 2.500000e-03
-coarse time step  43  old time = 1.075000e-01  old dt = 2.500000e-03
-coarse time step  44  old time = 1.100000e-01  old dt = 2.500000e-03
-coarse time step  45  old time = 1.125000e-01  old dt = 2.500000e-03
-coarse time step  46  old time = 1.150000e-01  old dt = 2.500000e-03
-coarse time step  47  old time = 1.175000e-01  old dt = 2.500000e-03
-coarse time step  48  old time = 1.200000e-01  old dt = 2.500000e-03
-coarse time step  49  old time = 1.225000e-01  old dt = 2.500000e-03
-coarse time step  50  old time = 1.250000e-01  old dt = 2.500000e-03
-coarse time step  51  old time = 1.275000e-01  old dt = 2.500000e-03
-coarse time step  52  old time = 1.300000e-01  old dt = 2.500000e-03
-coarse time step  53  old time = 1.325000e-01  old dt = 2.500000e-03
-coarse time step  54  old time = 1.350000e-01  old dt = 2.500000e-03
-coarse time step  55  old time = 1.375000e-01  old dt = 2.500000e-03
-coarse time step  56  old time = 1.400000e-01  old dt = 2.500000e-03
-coarse time step  57  old time = 1.425000e-01  old dt = 2.500000e-03
-coarse time step  58  old time = 1.450000e-01  old dt = 2.500000e-03
-coarse time step  59  old time = 1.475000e-01  old dt = 2.500000e-03
-coarse time step  60  old time = 1.500000e-01  old dt = 2.500000e-03
-coarse time step  61  old time = 1.525000e-01  old dt = 2.500000e-03
-coarse time step  62  old time = 1.550000e-01  old dt = 2.500000e-03
-coarse time step  63  old time = 1.575000e-01  old dt = 2.500000e-03
-coarse time step  64  old time = 1.600000e-01  old dt = 2.500000e-03
-coarse time step  65  old time = 1.625000e-01  old dt = 2.500000e-03
-coarse time step  66  old time = 1.650000e-01  old dt = 2.500000e-03
-coarse time step  67  old time = 1.675000e-01  old dt = 2.500000e-03
-coarse time step  68  old time = 1.700000e-01  old dt = 2.500000e-03
-coarse time step  69  old time = 1.725000e-01  old dt = 2.500000e-03
-coarse time step  70  old time = 1.750000e-01  old dt = 2.500000e-03
-coarse time step  71  old time = 1.775000e-01  old dt = 2.500000e-03
-coarse time step  72  old time = 1.800000e-01  old dt = 2.500000e-03
-coarse time step  73  old time = 1.825000e-01  old dt = 2.500000e-03
-coarse time step  74  old time = 1.850000e-01  old dt = 2.500000e-03
-coarse time step  75  old time = 1.875000e-01  old dt = 2.500000e-03
-coarse time step  76  old time = 1.900000e-01  old dt = 2.500000e-03
-coarse time step  77  old time = 1.925000e-01  old dt = 2.500000e-03
-coarse time step  78  old time = 1.950000e-01  old dt = 2.500000e-03
-coarse time step  79  old time = 1.975000e-01  old dt = 2.500000e-03
-coarse time step  80  old time = 2.000000e-01  old dt = 2.500000e-03
-coarse time step  81  old time = 2.025000e-01  old dt = 2.500000e-03
-coarse time step  82  old time = 2.050000e-01  old dt = 2.500000e-03
-coarse time step  83  old time = 2.075000e-01  old dt = 2.500000e-03
-coarse time step  84  old time = 2.100000e-01  old dt = 2.500000e-03
-coarse time step  85  old time = 2.125000e-01  old dt = 2.500000e-03
-coarse time step  86  old time = 2.150000e-01  old dt = 2.500000e-03
-coarse time step  87  old time = 2.175000e-01  old dt = 2.500000e-03
-coarse time step  88  old time = 2.200000e-01  old dt = 2.500000e-03
-coarse time step  89  old time = 2.225000e-01  old dt = 2.500000e-03
-coarse time step  90  old time = 2.250000e-01  old dt = 2.500000e-03
-coarse time step  91  old time = 2.275000e-01  old dt = 2.500000e-03
-coarse time step  92  old time = 2.300000e-01  old dt = 2.500000e-03
-coarse time step  93  old time = 2.325000e-01  old dt = 2.500000e-03
-coarse time step  94  old time = 2.350000e-01  old dt = 2.500000e-03
-coarse time step  95  old time = 2.375000e-01  old dt = 2.500000e-03
-coarse time step  96  old time = 2.400000e-01  old dt = 2.500000e-03
-coarse time step  97  old time = 2.425000e-01  old dt = 2.500000e-03
-coarse time step  98  old time = 2.450000e-01  old dt = 2.500000e-03
-coarse time step  99  old time = 2.475000e-01  old dt = 2.500000e-03
-coarse time step 100  old time = 2.500000e-01  old dt = 2.500000e-03
-coarse time step 101  old time = 2.525000e-01  old dt = 2.500000e-03
-coarse time step 102  old time = 2.550000e-01  old dt = 2.500000e-03
-coarse time step 103  old time = 2.575000e-01  old dt = 2.500000e-03
-coarse time step 104  old time = 2.600000e-01  old dt = 2.500000e-03
-coarse time step 105  old time = 2.625000e-01  old dt = 2.500000e-03
-coarse time step 106  old time = 2.650000e-01  old dt = 2.500000e-03
-coarse time step 107  old time = 2.675000e-01  old dt = 2.500000e-03
-coarse time step 108  old time = 2.700000e-01  old dt = 2.500000e-03
-coarse time step 109  old time = 2.725000e-01  old dt = 2.500000e-03
-coarse time step 110  old time = 2.750000e-01  old dt = 2.500000e-03
-coarse time step 111  old time = 2.775000e-01  old dt = 2.500000e-03
-coarse time step 112  old time = 2.800000e-01  old dt = 2.500000e-03
-coarse time step 113  old time = 2.825000e-01  old dt = 2.500000e-03
-coarse time step 114  old time = 2.850000e-01  old dt = 2.500000e-03
-coarse time step 115  old time = 2.875000e-01  old dt = 2.500000e-03
-coarse time step 116  old time = 2.900000e-01  old dt = 2.500000e-03
-coarse time step 117  old time = 2.925000e-01  old dt = 2.500000e-03
-coarse time step 118  old time = 2.950000e-01  old dt = 2.500000e-03
-coarse time step 119  old time = 2.975000e-01  old dt = 2.500000e-03
-coarse time step 120  old time = 3.000000e-01  old dt = 2.500000e-03
-coarse time step 121  old time = 3.025000e-01  old dt = 2.500000e-03
-coarse time step 122  old time = 3.050000e-01  old dt = 2.500000e-03
-coarse time step 123  old time = 3.075000e-01  old dt = 2.500000e-03
-coarse time step 124  old time = 3.100000e-01  old dt = 2.500000e-03
-coarse time step 125  old time = 3.125000e-01  old dt = 2.500000e-03
-coarse time step 126  old time = 3.150000e-01  old dt = 2.500000e-03
-coarse time step 127  old time = 3.175000e-01  old dt = 2.500000e-03
-coarse time step 128  old time = 3.200000e-01  old dt = 2.500000e-03
-coarse time step 129  old time = 3.225000e-01  old dt = 2.500000e-03
-coarse time step 130  old time = 3.250000e-01  old dt = 2.500000e-03
-coarse time step 131  old time = 3.275000e-01  old dt = 2.500000e-03
-coarse time step 132  old time = 3.300000e-01  old dt = 2.500000e-03
-coarse time step 133  old time = 3.325000e-01  old dt = 2.500000e-03
-coarse time step 134  old time = 3.350000e-01  old dt = 2.500000e-03
-coarse time step 135  old time = 3.375000e-01  old dt = 2.500000e-03
-coarse time step 136  old time = 3.400000e-01  old dt = 2.500000e-03
-coarse time step 137  old time = 3.425000e-01  old dt = 2.500000e-03
-coarse time step 138  old time = 3.450000e-01  old dt = 2.500000e-03
-coarse time step 139  old time = 3.475000e-01  old dt = 2.500000e-03
-coarse time step 140  old time = 3.500000e-01  old dt = 2.500000e-03
-coarse time step 141  old time = 3.525000e-01  old dt = 2.500000e-03
-coarse time step 142  old time = 3.550000e-01  old dt = 2.500000e-03
-coarse time step 143  old time = 3.575000e-01  old dt = 2.500000e-03
-coarse time step 144  old time = 3.600000e-01  old dt = 2.500000e-03
-coarse time step 145  old time = 3.625000e-01  old dt = 2.500000e-03
-coarse time step 146  old time = 3.650000e-01  old dt = 2.500000e-03
-coarse time step 147  old time = 3.675000e-01  old dt = 2.500000e-03
-coarse time step 148  old time = 3.700000e-01  old dt = 2.500000e-03
-coarse time step 149  old time = 3.725000e-01  old dt = 2.500000e-03
-coarse time step 150  old time = 3.750000e-01  old dt = 2.500000e-03
-coarse time step 151  old time = 3.775000e-01  old dt = 2.500000e-03
-coarse time step 152  old time = 3.800000e-01  old dt = 2.500000e-03
-coarse time step 153  old time = 3.825000e-01  old dt = 2.500000e-03
-coarse time step 154  old time = 3.850000e-01  old dt = 2.500000e-03
-coarse time step 155  old time = 3.875000e-01  old dt = 2.500000e-03
-coarse time step 156  old time = 3.900000e-01  old dt = 2.500000e-03
-coarse time step 157  old time = 3.925000e-01  old dt = 2.500000e-03
-coarse time step 158  old time = 3.950000e-01  old dt = 2.500000e-03
-coarse time step 159  old time = 3.975000e-01  old dt = 2.500000e-03
-coarse time step 160  old time = 4.000000e-01  old dt = 2.500000e-03
-coarse time step 161  old time = 4.025000e-01  old dt = 2.500000e-03
-coarse time step 162  old time = 4.050000e-01  old dt = 2.500000e-03
-coarse time step 163  old time = 4.075000e-01  old dt = 2.500000e-03
-coarse time step 164  old time = 4.100000e-01  old dt = 2.500000e-03
-coarse time step 165  old time = 4.125000e-01  old dt = 2.500000e-03
-coarse time step 166  old time = 4.150000e-01  old dt = 2.500000e-03
-coarse time step 167  old time = 4.175000e-01  old dt = 2.500000e-03
-coarse time step 168  old time = 4.200000e-01  old dt = 2.500000e-03
-coarse time step 169  old time = 4.225000e-01  old dt = 2.500000e-03
-coarse time step 170  old time = 4.250000e-01  old dt = 2.500000e-03
-coarse time step 171  old time = 4.275000e-01  old dt = 2.500000e-03
-coarse time step 172  old time = 4.300000e-01  old dt = 2.500000e-03
-coarse time step 173  old time = 4.325000e-01  old dt = 2.500000e-03
-coarse time step 174  old time = 4.350000e-01  old dt = 2.500000e-03
-coarse time step 175  old time = 4.375000e-01  old dt = 2.500000e-03
-coarse time step 176  old time = 4.400000e-01  old dt = 2.500000e-03
-coarse time step 177  old time = 4.425000e-01  old dt = 2.500000e-03
-coarse time step 178  old time = 4.450000e-01  old dt = 2.500000e-03
-coarse time step 179  old time = 4.475000e-01  old dt = 2.500000e-03
-coarse time step 180  old time = 4.500000e-01  old dt = 2.500000e-03
-coarse time step 181  old time = 4.525000e-01  old dt = 2.500000e-03
-coarse time step 182  old time = 4.550000e-01  old dt = 2.500000e-03
-coarse time step 183  old time = 4.575000e-01  old dt = 2.500000e-03
-coarse time step 184  old time = 4.600000e-01  old dt = 2.500000e-03
-coarse time step 185  old time = 4.625000e-01  old dt = 2.500000e-03
-coarse time step 186  old time = 4.650000e-01  old dt = 2.500000e-03
-coarse time step 187  old time = 4.675000e-01  old dt = 2.500000e-03
-coarse time step 188  old time = 4.700000e-01  old dt = 2.500000e-03
-coarse time step 189  old time = 4.725000e-01  old dt = 2.500000e-03
-coarse time step 190  old time = 4.750000e-01  old dt = 2.500000e-03
-coarse time step 191  old time = 4.775000e-01  old dt = 2.500000e-03
-coarse time step 192  old time = 4.800000e-01  old dt = 2.500000e-03
-coarse time step 193  old time = 4.825000e-01  old dt = 2.500000e-03
-coarse time step 194  old time = 4.850000e-01  old dt = 2.500000e-03
-coarse time step 195  old time = 4.875000e-01  old dt = 2.500000e-03
-coarse time step 196  old time = 4.900000e-01  old dt = 2.500000e-03
-coarse time step 197  old time = 4.925000e-01  old dt = 2.500000e-03
-coarse time step 198  old time = 4.950000e-01  old dt = 2.500000e-03
-coarse time step 199  old time = 4.975000e-01  old dt = 2.500000e-03
-coarse time step 200  old time = 5.000000e-01  old dt = 2.500000e-03
-coarse time step 201  old time = 5.025000e-01  old dt = 2.500000e-03
-coarse time step 202  old time = 5.050000e-01  old dt = 2.500000e-03
-coarse time step 203  old time = 5.075000e-01  old dt = 2.500000e-03
-coarse time step 204  old time = 5.100000e-01  old dt = 2.500000e-03
-coarse time step 205  old time = 5.125000e-01  old dt = 2.500000e-03
-coarse time step 206  old time = 5.150000e-01  old dt = 2.500000e-03
-coarse time step 207  old time = 5.175000e-01  old dt = 2.500000e-03
-coarse time step 208  old time = 5.200000e-01  old dt = 2.500000e-03
-coarse time step 209  old time = 5.225000e-01  old dt = 2.500000e-03
-coarse time step 210  old time = 5.250000e-01  old dt = 2.500000e-03
-coarse time step 211  old time = 5.275000e-01  old dt = 2.500000e-03
-coarse time step 212  old time = 5.300000e-01  old dt = 2.500000e-03
-coarse time step 213  old time = 5.325000e-01  old dt = 2.500000e-03
-coarse time step 214  old time = 5.350000e-01  old dt = 2.500000e-03
-coarse time step 215  old time = 5.375000e-01  old dt = 2.500000e-03
-coarse time step 216  old time = 5.400000e-01  old dt = 2.500000e-03
-coarse time step 217  old time = 5.425000e-01  old dt = 2.500000e-03
-coarse time step 218  old time = 5.450000e-01  old dt = 2.500000e-03
-coarse time step 219  old time = 5.475000e-01  old dt = 2.500000e-03
-coarse time step 220  old time = 5.500000e-01  old dt = 2.500000e-03
-coarse time step 221  old time = 5.525000e-01  old dt = 2.500000e-03
-coarse time step 222  old time = 5.550000e-01  old dt = 2.500000e-03
-coarse time step 223  old time = 5.575000e-01  old dt = 2.500000e-03
-coarse time step 224  old time = 5.600000e-01  old dt = 2.500000e-03
-coarse time step 225  old time = 5.625000e-01  old dt = 2.500000e-03
-coarse time step 226  old time = 5.650000e-01  old dt = 2.500000e-03
-coarse time step 227  old time = 5.675000e-01  old dt = 2.500000e-03
-coarse time step 228  old time = 5.700000e-01  old dt = 2.500000e-03
-coarse time step 229  old time = 5.725000e-01  old dt = 2.500000e-03
-coarse time step 230  old time = 5.750000e-01  old dt = 2.500000e-03
-coarse time step 231  old time = 5.775000e-01  old dt = 2.500000e-03
-coarse time step 232  old time = 5.800000e-01  old dt = 2.500000e-03
-coarse time step 233  old time = 5.825000e-01  old dt = 2.500000e-03
-coarse time step 234  old time = 5.850000e-01  old dt = 2.500000e-03
-coarse time step 235  old time = 5.875000e-01  old dt = 2.500000e-03
-coarse time step 236  old time = 5.900000e-01  old dt = 2.500000e-03
-coarse time step 237  old time = 5.925000e-01  old dt = 2.500000e-03
-coarse time step 238  old time = 5.950000e-01  old dt = 2.500000e-03
-coarse time step 239  old time = 5.975000e-01  old dt = 2.500000e-03
-coarse time step 240  old time = 6.000000e-01  old dt = 2.500000e-03
-coarse time step 241  old time = 6.025000e-01  old dt = 2.500000e-03
-coarse time step 242  old time = 6.050000e-01  old dt = 2.500000e-03
-coarse time step 243  old time = 6.075000e-01  old dt = 2.500000e-03
-coarse time step 244  old time = 6.100000e-01  old dt = 2.500000e-03
-coarse time step 245  old time = 6.125000e-01  old dt = 2.500000e-03
-coarse time step 246  old time = 6.150000e-01  old dt = 2.500000e-03
-coarse time step 247  old time = 6.175000e-01  old dt = 2.500000e-03
-coarse time step 248  old time = 6.200000e-01  old dt = 2.500000e-03
-coarse time step 249  old time = 6.225000e-01  old dt = 2.500000e-03
-coarse time step 250  old time = 6.250000e-01  old dt = 2.500000e-03
-coarse time step 251  old time = 6.275000e-01  old dt = 2.500000e-03
-coarse time step 252  old time = 6.300000e-01  old dt = 2.500000e-03
-coarse time step 253  old time = 6.325000e-01  old dt = 2.500000e-03
-coarse time step 254  old time = 6.350000e-01  old dt = 2.500000e-03
-coarse time step 255  old time = 6.375000e-01  old dt = 2.500000e-03
-coarse time step 256  old time = 6.400000e-01  old dt = 2.500000e-03
-coarse time step 257  old time = 6.425000e-01  old dt = 2.500000e-03
-coarse time step 258  old time = 6.450000e-01  old dt = 2.500000e-03
-coarse time step 259  old time = 6.475000e-01  old dt = 2.500000e-03
-coarse time step 260  old time = 6.500000e-01  old dt = 2.500000e-03
-coarse time step 261  old time = 6.525000e-01  old dt = 2.500000e-03
-coarse time step 262  old time = 6.550000e-01  old dt = 2.500000e-03
-coarse time step 263  old time = 6.575000e-01  old dt = 2.500000e-03
-coarse time step 264  old time = 6.600000e-01  old dt = 2.500000e-03
-coarse time step 265  old time = 6.625000e-01  old dt = 2.500000e-03
-coarse time step 266  old time = 6.650000e-01  old dt = 2.500000e-03
-coarse time step 267  old time = 6.675000e-01  old dt = 2.500000e-03
-coarse time step 268  old time = 6.700000e-01  old dt = 2.500000e-03
-coarse time step 269  old time = 6.725000e-01  old dt = 2.500000e-03
-coarse time step 270  old time = 6.750000e-01  old dt = 2.500000e-03
-coarse time step 271  old time = 6.775000e-01  old dt = 2.500000e-03
-coarse time step 272  old time = 6.800000e-01  old dt = 2.500000e-03
-coarse time step 273  old time = 6.825000e-01  old dt = 2.500000e-03
-coarse time step 274  old time = 6.850000e-01  old dt = 2.500000e-03
-coarse time step 275  old time = 6.875000e-01  old dt = 2.500000e-03
-coarse time step 276  old time = 6.900000e-01  old dt = 2.500000e-03
-coarse time step 277  old time = 6.925000e-01  old dt = 2.500000e-03
-coarse time step 278  old time = 6.950000e-01  old dt = 2.500000e-03
-coarse time step 279  old time = 6.975000e-01  old dt = 2.500000e-03
-coarse time step 280  old time = 7.000000e-01  old dt = 2.500000e-03
-coarse time step 281  old time = 7.025000e-01  old dt = 2.500000e-03
-coarse time step 282  old time = 7.050000e-01  old dt = 2.500000e-03
-coarse time step 283  old time = 7.075000e-01  old dt = 2.500000e-03
-coarse time step 284  old time = 7.100000e-01  old dt = 2.500000e-03
-coarse time step 285  old time = 7.125000e-01  old dt = 2.500000e-03
-coarse time step 286  old time = 7.150000e-01  old dt = 2.500000e-03
-coarse time step 287  old time = 7.175000e-01  old dt = 2.500000e-03
-coarse time step 288  old time = 7.200000e-01  old dt = 2.500000e-03
-coarse time step 289  old time = 7.225000e-01  old dt = 2.500000e-03
-coarse time step 290  old time = 7.250000e-01  old dt = 2.500000e-03
-coarse time step 291  old time = 7.275000e-01  old dt = 2.500000e-03
-coarse time step 292  old time = 7.300000e-01  old dt = 2.500000e-03
-coarse time step 293  old time = 7.325000e-01  old dt = 2.500000e-03
-coarse time step 294  old time = 7.350000e-01  old dt = 2.500000e-03
-coarse time step 295  old time = 7.375000e-01  old dt = 2.500000e-03
-coarse time step 296  old time = 7.400000e-01  old dt = 2.500000e-03
-coarse time step 297  old time = 7.425000e-01  old dt = 2.500000e-03
-coarse time step 298  old time = 7.450000e-01  old dt = 2.500000e-03
-coarse time step 299  old time = 7.475000e-01  old dt = 2.500000e-03
-coarse time step 300  old time = 7.500000e-01  old dt = 2.500000e-03
-coarse time step 301  old time = 7.525000e-01  old dt = 2.500000e-03
-coarse time step 302  old time = 7.550000e-01  old dt = 2.500000e-03
-coarse time step 303  old time = 7.575000e-01  old dt = 2.500000e-03
-coarse time step 304  old time = 7.600000e-01  old dt = 2.500000e-03
-coarse time step 305  old time = 7.625000e-01  old dt = 2.500000e-03
-coarse time step 306  old time = 7.650000e-01  old dt = 2.500000e-03
-coarse time step 307  old time = 7.675000e-01  old dt = 2.500000e-03
-coarse time step 308  old time = 7.700000e-01  old dt = 2.500000e-03
-coarse time step 309  old time = 7.725000e-01  old dt = 2.500000e-03
-coarse time step 310  old time = 7.750000e-01  old dt = 2.500000e-03
-coarse time step 311  old time = 7.775000e-01  old dt = 2.500000e-03
-coarse time step 312  old time = 7.800000e-01  old dt = 2.500000e-03
-coarse time step 313  old time = 7.825000e-01  old dt = 2.500000e-03
-coarse time step 314  old time = 7.850000e-01  old dt = 2.500000e-03
-coarse time step 315  old time = 7.875000e-01  old dt = 2.500000e-03
-coarse time step 316  old time = 7.900000e-01  old dt = 2.500000e-03
-coarse time step 317  old time = 7.925000e-01  old dt = 2.500000e-03
-coarse time step 318  old time = 7.950000e-01  old dt = 2.500000e-03
-coarse time step 319  old time = 7.975000e-01  old dt = 2.500000e-03
-coarse time step 320  old time = 8.000000e-01  old dt = 2.500000e-03
-coarse time step 321  old time = 8.025000e-01  old dt = 2.500000e-03
-coarse time step 322  old time = 8.050000e-01  old dt = 2.500000e-03
-coarse time step 323  old time = 8.075000e-01  old dt = 2.500000e-03
-coarse time step 324  old time = 8.100000e-01  old dt = 2.500000e-03
-coarse time step 325  old time = 8.125000e-01  old dt = 2.500000e-03
-coarse time step 326  old time = 8.150000e-01  old dt = 2.500000e-03
-coarse time step 327  old time = 8.175000e-01  old dt = 2.500000e-03
-coarse time step 328  old time = 8.200000e-01  old dt = 2.500000e-03
-coarse time step 329  old time = 8.225000e-01  old dt = 2.500000e-03
-coarse time step 330  old time = 8.250000e-01  old dt = 2.500000e-03
-coarse time step 331  old time = 8.275000e-01  old dt = 2.500000e-03
-coarse time step 332  old time = 8.300000e-01  old dt = 2.500000e-03
-coarse time step 333  old time = 8.325000e-01  old dt = 2.500000e-03
-coarse time step 334  old time = 8.350000e-01  old dt = 2.500000e-03
-coarse time step 335  old time = 8.375000e-01  old dt = 2.500000e-03
-coarse time step 336  old time = 8.400000e-01  old dt = 2.500000e-03
-coarse time step 337  old time = 8.425000e-01  old dt = 2.500000e-03
-coarse time step 338  old time = 8.450000e-01  old dt = 2.500000e-03
-coarse time step 339  old time = 8.475000e-01  old dt = 2.500000e-03
-coarse time step 340  old time = 8.500000e-01  old dt = 2.500000e-03
-coarse time step 341  old time = 8.525000e-01  old dt = 2.500000e-03
-coarse time step 342  old time = 8.550000e-01  old dt = 2.500000e-03
-coarse time step 343  old time = 8.575000e-01  old dt = 2.500000e-03
-coarse time step 344  old time = 8.600000e-01  old dt = 2.500000e-03
-coarse time step 345  old time = 8.625000e-01  old dt = 2.500000e-03
-coarse time step 346  old time = 8.650000e-01  old dt = 2.500000e-03
-coarse time step 347  old time = 8.675000e-01  old dt = 2.500000e-03
-coarse time step 348  old time = 8.700000e-01  old dt = 2.500000e-03
-coarse time step 349  old time = 8.725000e-01  old dt = 2.500000e-03
-coarse time step 350  old time = 8.750000e-01  old dt = 2.500000e-03
-coarse time step 351  old time = 8.775000e-01  old dt = 2.500000e-03
-coarse time step 352  old time = 8.800000e-01  old dt = 2.500000e-03
-coarse time step 353  old time = 8.825000e-01  old dt = 2.500000e-03
-coarse time step 354  old time = 8.850000e-01  old dt = 2.500000e-03
-coarse time step 355  old time = 8.875000e-01  old dt = 2.500000e-03
-coarse time step 356  old time = 8.900000e-01  old dt = 2.500000e-03
-coarse time step 357  old time = 8.925000e-01  old dt = 2.500000e-03
-coarse time step 358  old time = 8.950000e-01  old dt = 2.500000e-03
-coarse time step 359  old time = 8.975000e-01  old dt = 2.500000e-03
-coarse time step 360  old time = 9.000000e-01  old dt = 2.500000e-03
-coarse time step 361  old time = 9.025000e-01  old dt = 2.500000e-03
-coarse time step 362  old time = 9.050000e-01  old dt = 2.500000e-03
-coarse time step 363  old time = 9.075000e-01  old dt = 2.500000e-03
-coarse time step 364  old time = 9.100000e-01  old dt = 2.500000e-03
-coarse time step 365  old time = 9.125000e-01  old dt = 2.500000e-03
-coarse time step 366  old time = 9.150000e-01  old dt = 2.500000e-03
-coarse time step 367  old time = 9.175000e-01  old dt = 2.500000e-03
-coarse time step 368  old time = 9.200000e-01  old dt = 2.500000e-03
-coarse time step 369  old time = 9.225000e-01  old dt = 2.500000e-03
-coarse time step 370  old time = 9.250000e-01  old dt = 2.500000e-03
-coarse time step 371  old time = 9.275000e-01  old dt = 2.500000e-03
-coarse time step 372  old time = 9.300000e-01  old dt = 2.500000e-03
-coarse time step 373  old time = 9.325000e-01  old dt = 2.500000e-03
-coarse time step 374  old time = 9.350000e-01  old dt = 2.500000e-03
-coarse time step 375  old time = 9.375000e-01  old dt = 2.500000e-03
-coarse time step 376  old time = 9.400000e-01  old dt = 2.500000e-03
-coarse time step 377  old time = 9.425000e-01  old dt = 2.500000e-03
-coarse time step 378  old time = 9.450000e-01  old dt = 2.500000e-03
-coarse time step 379  old time = 9.475000e-01  old dt = 2.500000e-03
-coarse time step 380  old time = 9.500000e-01  old dt = 2.500000e-03
-coarse time step 381  old time = 9.525000e-01  old dt = 2.500000e-03
-coarse time step 382  old time = 9.550000e-01  old dt = 2.500000e-03
-coarse time step 383  old time = 9.575000e-01  old dt = 2.500000e-03
-coarse time step 384  old time = 9.600000e-01  old dt = 2.500000e-03
-coarse time step 385  old time = 9.625000e-01  old dt = 2.500000e-03
-coarse time step 386  old time = 9.650000e-01  old dt = 2.500000e-03
-coarse time step 387  old time = 9.675000e-01  old dt = 2.500000e-03
-coarse time step 388  old time = 9.700000e-01  old dt = 2.500000e-03
-coarse time step 389  old time = 9.725000e-01  old dt = 2.500000e-03
-coarse time step 390  old time = 9.750000e-01  old dt = 2.500000e-03
-coarse time step 391  old time = 9.775000e-01  old dt = 2.500000e-03
-coarse time step 392  old time = 9.800000e-01  old dt = 2.500000e-03
-coarse time step 393  old time = 9.825000e-01  old dt = 2.500000e-03
-coarse time step 394  old time = 9.850000e-01  old dt = 2.500000e-03
-coarse time step 395  old time = 9.875000e-01  old dt = 2.500000e-03
-coarse time step 396  old time = 9.900000e-01  old dt = 2.500000e-03
-coarse time step 397  old time = 9.925000e-01  old dt = 2.500000e-03
-coarse time step 398  old time = 9.950000e-01  old dt = 2.500000e-03
-coarse time step 399  old time = 9.975000e-01  old dt = 2.500000e-03
-coarse time step 400  old time = 1.000000e+00  old dt = 2.500000e-03
-coarse time step 401  old time = 1.002500e+00  old dt = 2.500000e-03
-coarse time step 402  old time = 1.005000e+00  old dt = 2.500000e-03
-coarse time step 403  old time = 1.007500e+00  old dt = 2.500000e-03
-coarse time step 404  old time = 1.010000e+00  old dt = 2.500000e-03
-coarse time step 405  old time = 1.012500e+00  old dt = 2.500000e-03
-coarse time step 406  old time = 1.015000e+00  old dt = 2.500000e-03
-coarse time step 407  old time = 1.017500e+00  old dt = 2.500000e-03
-coarse time step 408  old time = 1.020000e+00  old dt = 2.500000e-03
-coarse time step 409  old time = 1.022500e+00  old dt = 2.500000e-03
-coarse time step 410  old time = 1.025000e+00  old dt = 2.500000e-03
-coarse time step 411  old time = 1.027500e+00  old dt = 2.500000e-03
-coarse time step 412  old time = 1.030000e+00  old dt = 2.500000e-03
-coarse time step 413  old time = 1.032500e+00  old dt = 2.500000e-03
-coarse time step 414  old time = 1.035000e+00  old dt = 2.500000e-03
-coarse time step 415  old time = 1.037500e+00  old dt = 2.500000e-03
-coarse time step 416  old time = 1.040000e+00  old dt = 2.500000e-03
-coarse time step 417  old time = 1.042500e+00  old dt = 2.500000e-03
-coarse time step 418  old time = 1.045000e+00  old dt = 2.500000e-03
-coarse time step 419  old time = 1.047500e+00  old dt = 2.500000e-03
-coarse time step 420  old time = 1.050000e+00  old dt = 2.500000e-03
-coarse time step 421  old time = 1.052500e+00  old dt = 2.500000e-03
-coarse time step 422  old time = 1.055000e+00  old dt = 2.500000e-03
-coarse time step 423  old time = 1.057500e+00  old dt = 2.500000e-03
-coarse time step 424  old time = 1.060000e+00  old dt = 2.500000e-03
-coarse time step 425  old time = 1.062500e+00  old dt = 2.500000e-03
-coarse time step 426  old time = 1.065000e+00  old dt = 2.500000e-03
-coarse time step 427  old time = 1.067500e+00  old dt = 2.500000e-03
-coarse time step 428  old time = 1.070000e+00  old dt = 2.500000e-03
-coarse time step 429  old time = 1.072500e+00  old dt = 2.500000e-03
-coarse time step 430  old time = 1.075000e+00  old dt = 2.500000e-03
-coarse time step 431  old time = 1.077500e+00  old dt = 2.500000e-03
-coarse time step 432  old time = 1.080000e+00  old dt = 2.500000e-03
-coarse time step 433  old time = 1.082500e+00  old dt = 2.500000e-03
-coarse time step 434  old time = 1.085000e+00  old dt = 2.500000e-03
-coarse time step 435  old time = 1.087500e+00  old dt = 2.500000e-03
-coarse time step 436  old time = 1.090000e+00  old dt = 2.500000e-03
-coarse time step 437  old time = 1.092500e+00  old dt = 2.500000e-03
-coarse time step 438  old time = 1.095000e+00  old dt = 2.500000e-03
-coarse time step 439  old time = 1.097500e+00  old dt = 2.500000e-03
-coarse time step 440  old time = 1.100000e+00  old dt = 2.500000e-03
-coarse time step 441  old time = 1.102500e+00  old dt = 2.500000e-03
-coarse time step 442  old time = 1.105000e+00  old dt = 2.500000e-03
-coarse time step 443  old time = 1.107500e+00  old dt = 2.500000e-03
-coarse time step 444  old time = 1.110000e+00  old dt = 2.500000e-03
-coarse time step 445  old time = 1.112500e+00  old dt = 2.500000e-03
-coarse time step 446  old time = 1.115000e+00  old dt = 2.500000e-03
-coarse time step 447  old time = 1.117500e+00  old dt = 2.500000e-03
-coarse time step 448  old time = 1.120000e+00  old dt = 2.500000e-03
-coarse time step 449  old time = 1.122500e+00  old dt = 2.500000e-03
-coarse time step 450  old time = 1.125000e+00  old dt = 2.500000e-03
-coarse time step 451  old time = 1.127500e+00  old dt = 2.500000e-03
-coarse time step 452  old time = 1.130000e+00  old dt = 2.500000e-03
-coarse time step 453  old time = 1.132500e+00  old dt = 2.500000e-03
-coarse time step 454  old time = 1.135000e+00  old dt = 2.500000e-03
-coarse time step 455  old time = 1.137500e+00  old dt = 2.500000e-03
-coarse time step 456  old time = 1.140000e+00  old dt = 2.500000e-03
-coarse time step 457  old time = 1.142500e+00  old dt = 2.500000e-03
-coarse time step 458  old time = 1.145000e+00  old dt = 2.500000e-03
-coarse time step 459  old time = 1.147500e+00  old dt = 2.500000e-03
-coarse time step 460  old time = 1.150000e+00  old dt = 2.500000e-03
-coarse time step 461  old time = 1.152500e+00  old dt = 2.500000e-03
-coarse time step 462  old time = 1.155000e+00  old dt = 2.500000e-03
-coarse time step 463  old time = 1.157500e+00  old dt = 2.500000e-03
-coarse time step 464  old time = 1.160000e+00  old dt = 2.500000e-03
-coarse time step 465  old time = 1.162500e+00  old dt = 2.500000e-03
-coarse time step 466  old time = 1.165000e+00  old dt = 2.500000e-03
-coarse time step 467  old time = 1.167500e+00  old dt = 2.500000e-03
-coarse time step 468  old time = 1.170000e+00  old dt = 2.500000e-03
-coarse time step 469  old time = 1.172500e+00  old dt = 2.500000e-03
-coarse time step 470  old time = 1.175000e+00  old dt = 2.500000e-03
-coarse time step 471  old time = 1.177500e+00  old dt = 2.500000e-03
-coarse time step 472  old time = 1.180000e+00  old dt = 2.500000e-03
-coarse time step 473  old time = 1.182500e+00  old dt = 2.500000e-03
-coarse time step 474  old time = 1.185000e+00  old dt = 2.500000e-03
-coarse time step 475  old time = 1.187500e+00  old dt = 2.500000e-03
-coarse time step 476  old time = 1.190000e+00  old dt = 2.500000e-03
-coarse time step 477  old time = 1.192500e+00  old dt = 2.500000e-03
-coarse time step 478  old time = 1.195000e+00  old dt = 2.500000e-03
-coarse time step 479  old time = 1.197500e+00  old dt = 2.500000e-03
-coarse time step 480  old time = 1.200000e+00  old dt = 2.500000e-03
-coarse time step 481  old time = 1.202500e+00  old dt = 2.500000e-03
-coarse time step 482  old time = 1.205000e+00  old dt = 2.500000e-03
-coarse time step 483  old time = 1.207500e+00  old dt = 2.500000e-03
-coarse time step 484  old time = 1.210000e+00  old dt = 2.500000e-03
-coarse time step 485  old time = 1.212500e+00  old dt = 2.500000e-03
-coarse time step 486  old time = 1.215000e+00  old dt = 2.500000e-03
-coarse time step 487  old time = 1.217500e+00  old dt = 2.500000e-03
-coarse time step 488  old time = 1.220000e+00  old dt = 2.500000e-03
-coarse time step 489  old time = 1.222500e+00  old dt = 2.500000e-03
-coarse time step 490  old time = 1.225000e+00  old dt = 2.500000e-03
-coarse time step 491  old time = 1.227500e+00  old dt = 2.500000e-03
-coarse time step 492  old time = 1.230000e+00  old dt = 2.500000e-03
-coarse time step 493  old time = 1.232500e+00  old dt = 2.500000e-03
-coarse time step 494  old time = 1.235000e+00  old dt = 2.500000e-03
-coarse time step 495  old time = 1.237500e+00  old dt = 2.500000e-03
-coarse time step 496  old time = 1.240000e+00  old dt = 2.500000e-03
-coarse time step 497  old time = 1.242500e+00  old dt = 2.500000e-03
-coarse time step 498  old time = 1.245000e+00  old dt = 2.500000e-03
-coarse time step 499  old time = 1.247500e+00  old dt = 2.500000e-03
-coarse time step 500  old time = 1.250000e+00  old dt = 2.500000e-03
-coarse time step 501  old time = 1.252500e+00  old dt = 2.500000e-03
-coarse time step 502  old time = 1.255000e+00  old dt = 2.500000e-03
-coarse time step 503  old time = 1.257500e+00  old dt = 2.500000e-03
-coarse time step 504  old time = 1.260000e+00  old dt = 2.500000e-03
-coarse time step 505  old time = 1.262500e+00  old dt = 2.500000e-03
-coarse time step 506  old time = 1.265000e+00  old dt = 2.500000e-03
-coarse time step 507  old time = 1.267500e+00  old dt = 2.500000e-03
-coarse time step 508  old time = 1.270000e+00  old dt = 2.500000e-03
-coarse time step 509  old time = 1.272500e+00  old dt = 2.500000e-03
-coarse time step 510  old time = 1.275000e+00  old dt = 2.500000e-03
-coarse time step 511  old time = 1.277500e+00  old dt = 2.500000e-03
-coarse time step 512  old time = 1.280000e+00  old dt = 2.500000e-03
-coarse time step 513  old time = 1.282500e+00  old dt = 2.500000e-03
-coarse time step 514  old time = 1.285000e+00  old dt = 2.500000e-03
-coarse time step 515  old time = 1.287500e+00  old dt = 2.500000e-03
-coarse time step 516  old time = 1.290000e+00  old dt = 2.500000e-03
-coarse time step 517  old time = 1.292500e+00  old dt = 2.500000e-03
-coarse time step 518  old time = 1.295000e+00  old dt = 2.500000e-03
-coarse time step 519  old time = 1.297500e+00  old dt = 2.500000e-03
-coarse time step 520  old time = 1.300000e+00  old dt = 2.500000e-03
-coarse time step 521  old time = 1.302500e+00  old dt = 2.500000e-03
-coarse time step 522  old time = 1.305000e+00  old dt = 2.500000e-03
-coarse time step 523  old time = 1.307500e+00  old dt = 2.500000e-03
-coarse time step 524  old time = 1.310000e+00  old dt = 2.500000e-03
-coarse time step 525  old time = 1.312500e+00  old dt = 2.500000e-03
-coarse time step 526  old time = 1.315000e+00  old dt = 2.500000e-03
-coarse time step 527  old time = 1.317500e+00  old dt = 2.500000e-03
-coarse time step 528  old time = 1.320000e+00  old dt = 2.500000e-03
-coarse time step 529  old time = 1.322500e+00  old dt = 2.500000e-03
-coarse time step 530  old time = 1.325000e+00  old dt = 2.500000e-03
-coarse time step 531  old time = 1.327500e+00  old dt = 2.500000e-03
-coarse time step 532  old time = 1.330000e+00  old dt = 2.500000e-03
-coarse time step 533  old time = 1.332500e+00  old dt = 2.500000e-03
-coarse time step 534  old time = 1.335000e+00  old dt = 2.500000e-03
-coarse time step 535  old time = 1.337500e+00  old dt = 2.500000e-03
-coarse time step 536  old time = 1.340000e+00  old dt = 2.500000e-03
-coarse time step 537  old time = 1.342500e+00  old dt = 2.500000e-03
-coarse time step 538  old time = 1.345000e+00  old dt = 2.500000e-03
-coarse time step 539  old time = 1.347500e+00  old dt = 2.500000e-03
-coarse time step 540  old time = 1.350000e+00  old dt = 2.500000e-03
-coarse time step 541  old time = 1.352500e+00  old dt = 2.500000e-03
-coarse time step 542  old time = 1.355000e+00  old dt = 2.500000e-03
-coarse time step 543  old time = 1.357500e+00  old dt = 2.500000e-03
-coarse time step 544  old time = 1.360000e+00  old dt = 2.500000e-03
-coarse time step 545  old time = 1.362500e+00  old dt = 2.500000e-03
-coarse time step 546  old time = 1.365000e+00  old dt = 2.500000e-03
-coarse time step 547  old time = 1.367500e+00  old dt = 2.500000e-03
-coarse time step 548  old time = 1.370000e+00  old dt = 2.500000e-03
-coarse time step 549  old time = 1.372500e+00  old dt = 2.500000e-03
-coarse time step 550  old time = 1.375000e+00  old dt = 2.500000e-03
-coarse time step 551  old time = 1.377500e+00  old dt = 2.500000e-03
-coarse time step 552  old time = 1.380000e+00  old dt = 2.500000e-03
-coarse time step 553  old time = 1.382500e+00  old dt = 2.500000e-03
-coarse time step 554  old time = 1.385000e+00  old dt = 2.500000e-03
-coarse time step 555  old time = 1.387500e+00  old dt = 2.500000e-03
-coarse time step 556  old time = 1.390000e+00  old dt = 2.500000e-03
-coarse time step 557  old time = 1.392500e+00  old dt = 2.500000e-03
-coarse time step 558  old time = 1.395000e+00  old dt = 2.500000e-03
-coarse time step 559  old time = 1.397500e+00  old dt = 2.500000e-03
-coarse time step 560  old time = 1.400000e+00  old dt = 2.500000e-03
-coarse time step 561  old time = 1.402500e+00  old dt = 2.500000e-03
-coarse time step 562  old time = 1.405000e+00  old dt = 2.500000e-03
-coarse time step 563  old time = 1.407500e+00  old dt = 2.500000e-03
-coarse time step 564  old time = 1.410000e+00  old dt = 2.500000e-03
-coarse time step 565  old time = 1.412500e+00  old dt = 2.500000e-03
-coarse time step 566  old time = 1.415000e+00  old dt = 2.500000e-03
-coarse time step 567  old time = 1.417500e+00  old dt = 2.500000e-03
-coarse time step 568  old time = 1.420000e+00  old dt = 2.500000e-03
-coarse time step 569  old time = 1.422500e+00  old dt = 2.500000e-03
-coarse time step 570  old time = 1.425000e+00  old dt = 2.500000e-03
-coarse time step 571  old time = 1.427500e+00  old dt = 2.500000e-03
-coarse time step 572  old time = 1.430000e+00  old dt = 2.500000e-03
-coarse time step 573  old time = 1.432500e+00  old dt = 2.500000e-03
-coarse time step 574  old time = 1.435000e+00  old dt = 2.500000e-03
-coarse time step 575  old time = 1.437500e+00  old dt = 2.500000e-03
-coarse time step 576  old time = 1.440000e+00  old dt = 2.500000e-03
-coarse time step 577  old time = 1.442500e+00  old dt = 2.500000e-03
-coarse time step 578  old time = 1.445000e+00  old dt = 2.500000e-03
-coarse time step 579  old time = 1.447500e+00  old dt = 2.500000e-03
-coarse time step 580  old time = 1.450000e+00  old dt = 2.500000e-03
-coarse time step 581  old time = 1.452500e+00  old dt = 2.500000e-03
-coarse time step 582  old time = 1.455000e+00  old dt = 2.500000e-03
-coarse time step 583  old time = 1.457500e+00  old dt = 2.500000e-03
-coarse time step 584  old time = 1.460000e+00  old dt = 2.500000e-03
-coarse time step 585  old time = 1.462500e+00  old dt = 2.500000e-03
-coarse time step 586  old time = 1.465000e+00  old dt = 2.500000e-03
-coarse time step 587  old time = 1.467500e+00  old dt = 2.500000e-03
-coarse time step 588  old time = 1.470000e+00  old dt = 2.500000e-03
-coarse time step 589  old time = 1.472500e+00  old dt = 2.500000e-03
-coarse time step 590  old time = 1.475000e+00  old dt = 2.500000e-03
-coarse time step 591  old time = 1.477500e+00  old dt = 2.500000e-03
-coarse time step 592  old time = 1.480000e+00  old dt = 2.500000e-03
-coarse time step 593  old time = 1.482500e+00  old dt = 2.500000e-03
-coarse time step 594  old time = 1.485000e+00  old dt = 2.500000e-03
-coarse time step 595  old time = 1.487500e+00  old dt = 2.500000e-03
-coarse time step 596  old time = 1.490000e+00  old dt = 2.500000e-03
-coarse time step 597  old time = 1.492500e+00  old dt = 2.500000e-03
-coarse time step 598  old time = 1.495000e+00  old dt = 2.500000e-03
-coarse time step 599  old time = 1.497500e+00  old dt = 2.500000e-03
-coarse time step 600  old time = 1.500000e+00  old dt = 2.500000e-03
-coarse time step 601  old time = 1.502500e+00  old dt = 2.500000e-03
-coarse time step 602  old time = 1.505000e+00  old dt = 2.500000e-03
-coarse time step 603  old time = 1.507500e+00  old dt = 2.500000e-03
-coarse time step 604  old time = 1.510000e+00  old dt = 2.500000e-03
-coarse time step 605  old time = 1.512500e+00  old dt = 2.500000e-03
-coarse time step 606  old time = 1.515000e+00  old dt = 2.500000e-03
-coarse time step 607  old time = 1.517500e+00  old dt = 2.500000e-03
-coarse time step 608  old time = 1.520000e+00  old dt = 2.500000e-03
-coarse time step 609  old time = 1.522500e+00  old dt = 2.500000e-03
-coarse time step 610  old time = 1.525000e+00  old dt = 2.500000e-03
-coarse time step 611  old time = 1.527500e+00  old dt = 2.500000e-03
-coarse time step 612  old time = 1.530000e+00  old dt = 2.500000e-03
-coarse time step 613  old time = 1.532500e+00  old dt = 2.500000e-03
-coarse time step 614  old time = 1.535000e+00  old dt = 2.500000e-03
-coarse time step 615  old time = 1.537500e+00  old dt = 2.500000e-03
-coarse time step 616  old time = 1.540000e+00  old dt = 2.500000e-03
-coarse time step 617  old time = 1.542500e+00  old dt = 2.500000e-03
-coarse time step 618  old time = 1.545000e+00  old dt = 2.500000e-03
-coarse time step 619  old time = 1.547500e+00  old dt = 2.500000e-03
-coarse time step 620  old time = 1.550000e+00  old dt = 2.500000e-03
-coarse time step 621  old time = 1.552500e+00  old dt = 2.500000e-03
-coarse time step 622  old time = 1.555000e+00  old dt = 2.500000e-03
-coarse time step 623  old time = 1.557500e+00  old dt = 2.500000e-03
-coarse time step 624  old time = 1.560000e+00  old dt = 2.500000e-03
-coarse time step 625  old time = 1.562500e+00  old dt = 2.500000e-03
-coarse time step 626  old time = 1.565000e+00  old dt = 2.500000e-03
-coarse time step 627  old time = 1.567500e+00  old dt = 2.500000e-03
-coarse time step 628  old time = 1.570000e+00  old dt = 2.500000e-03
-coarse time step 629  old time = 1.572500e+00  old dt = 2.500000e-03
-coarse time step 630  old time = 1.575000e+00  old dt = 2.500000e-03
-coarse time step 631  old time = 1.577500e+00  old dt = 2.500000e-03
-coarse time step 632  old time = 1.580000e+00  old dt = 2.500000e-03
-coarse time step 633  old time = 1.582500e+00  old dt = 2.500000e-03
-coarse time step 634  old time = 1.585000e+00  old dt = 2.500000e-03
-coarse time step 635  old time = 1.587500e+00  old dt = 2.500000e-03
-coarse time step 636  old time = 1.590000e+00  old dt = 2.500000e-03
-coarse time step 637  old time = 1.592500e+00  old dt = 2.500000e-03
-coarse time step 638  old time = 1.595000e+00  old dt = 2.500000e-03
-coarse time step 639  old time = 1.597500e+00  old dt = 2.500000e-03
-coarse time step 640  old time = 1.600000e+00  old dt = 2.500000e-03
-coarse time step 641  old time = 1.602500e+00  old dt = 2.500000e-03
-coarse time step 642  old time = 1.605000e+00  old dt = 2.500000e-03
-coarse time step 643  old time = 1.607500e+00  old dt = 2.500000e-03
-coarse time step 644  old time = 1.610000e+00  old dt = 2.500000e-03
-coarse time step 645  old time = 1.612500e+00  old dt = 2.500000e-03
-coarse time step 646  old time = 1.615000e+00  old dt = 2.500000e-03
-coarse time step 647  old time = 1.617500e+00  old dt = 2.500000e-03
-coarse time step 648  old time = 1.620000e+00  old dt = 2.500000e-03
-coarse time step 649  old time = 1.622500e+00  old dt = 2.500000e-03
-coarse time step 650  old time = 1.625000e+00  old dt = 2.500000e-03
-coarse time step 651  old time = 1.627500e+00  old dt = 2.500000e-03
-coarse time step 652  old time = 1.630000e+00  old dt = 2.500000e-03
-coarse time step 653  old time = 1.632500e+00  old dt = 2.500000e-03
-coarse time step 654  old time = 1.635000e+00  old dt = 2.500000e-03
-coarse time step 655  old time = 1.637500e+00  old dt = 2.500000e-03
-coarse time step 656  old time = 1.640000e+00  old dt = 2.500000e-03
-coarse time step 657  old time = 1.642500e+00  old dt = 2.500000e-03
-coarse time step 658  old time = 1.645000e+00  old dt = 2.500000e-03
-coarse time step 659  old time = 1.647500e+00  old dt = 2.500000e-03
-coarse time step 660  old time = 1.650000e+00  old dt = 2.500000e-03
-coarse time step 661  old time = 1.652500e+00  old dt = 2.500000e-03
-coarse time step 662  old time = 1.655000e+00  old dt = 2.500000e-03
-coarse time step 663  old time = 1.657500e+00  old dt = 2.500000e-03
-coarse time step 664  old time = 1.660000e+00  old dt = 2.500000e-03
-coarse time step 665  old time = 1.662500e+00  old dt = 2.500000e-03
-coarse time step 666  old time = 1.665000e+00  old dt = 2.500000e-03
-coarse time step 667  old time = 1.667500e+00  old dt = 2.500000e-03
-coarse time step 668  old time = 1.670000e+00  old dt = 2.500000e-03
-coarse time step 669  old time = 1.672500e+00  old dt = 2.500000e-03
-coarse time step 670  old time = 1.675000e+00  old dt = 2.500000e-03
-coarse time step 671  old time = 1.677500e+00  old dt = 2.500000e-03
-coarse time step 672  old time = 1.680000e+00  old dt = 2.500000e-03
-coarse time step 673  old time = 1.682500e+00  old dt = 2.500000e-03
-coarse time step 674  old time = 1.685000e+00  old dt = 2.500000e-03
-coarse time step 675  old time = 1.687500e+00  old dt = 2.500000e-03
-coarse time step 676  old time = 1.690000e+00  old dt = 2.500000e-03
-coarse time step 677  old time = 1.692500e+00  old dt = 2.500000e-03
-coarse time step 678  old time = 1.695000e+00  old dt = 2.500000e-03
-coarse time step 679  old time = 1.697500e+00  old dt = 2.500000e-03
-coarse time step 680  old time = 1.700000e+00  old dt = 2.500000e-03
-coarse time step 681  old time = 1.702500e+00  old dt = 2.500000e-03
-coarse time step 682  old time = 1.705000e+00  old dt = 2.500000e-03
-coarse time step 683  old time = 1.707500e+00  old dt = 2.500000e-03
-coarse time step 684  old time = 1.710000e+00  old dt = 2.500000e-03
-coarse time step 685  old time = 1.712500e+00  old dt = 2.500000e-03
-coarse time step 686  old time = 1.715000e+00  old dt = 2.500000e-03
-coarse time step 687  old time = 1.717500e+00  old dt = 2.500000e-03
-coarse time step 688  old time = 1.720000e+00  old dt = 2.500000e-03
-coarse time step 689  old time = 1.722500e+00  old dt = 2.500000e-03
-coarse time step 690  old time = 1.725000e+00  old dt = 2.500000e-03
-coarse time step 691  old time = 1.727500e+00  old dt = 2.500000e-03
-coarse time step 692  old time = 1.730000e+00  old dt = 2.500000e-03
-coarse time step 693  old time = 1.732500e+00  old dt = 2.500000e-03
-coarse time step 694  old time = 1.735000e+00  old dt = 2.500000e-03
-coarse time step 695  old time = 1.737500e+00  old dt = 2.500000e-03
-coarse time step 696  old time = 1.740000e+00  old dt = 2.500000e-03
-coarse time step 697  old time = 1.742500e+00  old dt = 2.500000e-03
-coarse time step 698  old time = 1.745000e+00  old dt = 2.500000e-03
-coarse time step 699  old time = 1.747500e+00  old dt = 2.500000e-03
-coarse time step 700  old time = 1.750000e+00  old dt = 2.500000e-03
-coarse time step 701  old time = 1.752500e+00  old dt = 2.500000e-03
-coarse time step 702  old time = 1.755000e+00  old dt = 2.500000e-03
-coarse time step 703  old time = 1.757500e+00  old dt = 2.500000e-03
-coarse time step 704  old time = 1.760000e+00  old dt = 2.500000e-03
-coarse time step 705  old time = 1.762500e+00  old dt = 2.500000e-03
-coarse time step 706  old time = 1.765000e+00  old dt = 2.500000e-03
-coarse time step 707  old time = 1.767500e+00  old dt = 2.500000e-03
-coarse time step 708  old time = 1.770000e+00  old dt = 2.500000e-03
-coarse time step 709  old time = 1.772500e+00  old dt = 2.500000e-03
-coarse time step 710  old time = 1.775000e+00  old dt = 2.500000e-03
-coarse time step 711  old time = 1.777500e+00  old dt = 2.500000e-03
-coarse time step 712  old time = 1.780000e+00  old dt = 2.500000e-03
-coarse time step 713  old time = 1.782500e+00  old dt = 2.500000e-03
-coarse time step 714  old time = 1.785000e+00  old dt = 2.500000e-03
-coarse time step 715  old time = 1.787500e+00  old dt = 2.500000e-03
-coarse time step 716  old time = 1.790000e+00  old dt = 2.500000e-03
-coarse time step 717  old time = 1.792500e+00  old dt = 2.500000e-03
-coarse time step 718  old time = 1.795000e+00  old dt = 2.500000e-03
-coarse time step 719  old time = 1.797500e+00  old dt = 2.500000e-03
-coarse time step 720  old time = 1.800000e+00  old dt = 2.500000e-03
-coarse time step 721  old time = 1.802500e+00  old dt = 2.500000e-03
-coarse time step 722  old time = 1.805000e+00  old dt = 2.500000e-03
-coarse time step 723  old time = 1.807500e+00  old dt = 2.500000e-03
-coarse time step 724  old time = 1.810000e+00  old dt = 2.500000e-03
-coarse time step 725  old time = 1.812500e+00  old dt = 2.500000e-03
-coarse time step 726  old time = 1.815000e+00  old dt = 2.500000e-03
-coarse time step 727  old time = 1.817500e+00  old dt = 2.500000e-03
-coarse time step 728  old time = 1.820000e+00  old dt = 2.500000e-03
-coarse time step 729  old time = 1.822500e+00  old dt = 2.500000e-03
-coarse time step 730  old time = 1.825000e+00  old dt = 2.500000e-03
-coarse time step 731  old time = 1.827500e+00  old dt = 2.500000e-03
-coarse time step 732  old time = 1.830000e+00  old dt = 2.500000e-03
-coarse time step 733  old time = 1.832500e+00  old dt = 2.500000e-03
-coarse time step 734  old time = 1.835000e+00  old dt = 2.500000e-03
-coarse time step 735  old time = 1.837500e+00  old dt = 2.500000e-03
-coarse time step 736  old time = 1.840000e+00  old dt = 2.500000e-03
-coarse time step 737  old time = 1.842500e+00  old dt = 2.500000e-03
-coarse time step 738  old time = 1.845000e+00  old dt = 2.500000e-03
-coarse time step 739  old time = 1.847500e+00  old dt = 2.500000e-03
-coarse time step 740  old time = 1.850000e+00  old dt = 2.500000e-03
-coarse time step 741  old time = 1.852500e+00  old dt = 2.500000e-03
-coarse time step 742  old time = 1.855000e+00  old dt = 2.500000e-03
-coarse time step 743  old time = 1.857500e+00  old dt = 2.500000e-03
-coarse time step 744  old time = 1.860000e+00  old dt = 2.500000e-03
-coarse time step 745  old time = 1.862500e+00  old dt = 2.500000e-03
-coarse time step 746  old time = 1.865000e+00  old dt = 2.500000e-03
-coarse time step 747  old time = 1.867500e+00  old dt = 2.500000e-03
-coarse time step 748  old time = 1.870000e+00  old dt = 2.500000e-03
-coarse time step 749  old time = 1.872500e+00  old dt = 2.500000e-03
-coarse time step 750  old time = 1.875000e+00  old dt = 2.500000e-03
-coarse time step 751  old time = 1.877500e+00  old dt = 2.500000e-03
-coarse time step 752  old time = 1.880000e+00  old dt = 2.500000e-03
-coarse time step 753  old time = 1.882500e+00  old dt = 2.500000e-03
-coarse time step 754  old time = 1.885000e+00  old dt = 2.500000e-03
-coarse time step 755  old time = 1.887500e+00  old dt = 2.500000e-03
-coarse time step 756  old time = 1.890000e+00  old dt = 2.500000e-03
-coarse time step 757  old time = 1.892500e+00  old dt = 2.500000e-03
-coarse time step 758  old time = 1.895000e+00  old dt = 2.500000e-03
-coarse time step 759  old time = 1.897500e+00  old dt = 2.500000e-03
-coarse time step 760  old time = 1.900000e+00  old dt = 2.500000e-03
-coarse time step 761  old time = 1.902500e+00  old dt = 2.500000e-03
-coarse time step 762  old time = 1.905000e+00  old dt = 2.500000e-03
-coarse time step 763  old time = 1.907500e+00  old dt = 2.500000e-03
-coarse time step 764  old time = 1.910000e+00  old dt = 2.500000e-03
-coarse time step 765  old time = 1.912500e+00  old dt = 2.500000e-03
-coarse time step 766  old time = 1.915000e+00  old dt = 2.500000e-03
-coarse time step 767  old time = 1.917500e+00  old dt = 2.500000e-03
-coarse time step 768  old time = 1.920000e+00  old dt = 2.500000e-03
-coarse time step 769  old time = 1.922500e+00  old dt = 2.500000e-03
-coarse time step 770  old time = 1.925000e+00  old dt = 2.500000e-03
-coarse time step 771  old time = 1.927500e+00  old dt = 2.500000e-03
-coarse time step 772  old time = 1.930000e+00  old dt = 2.500000e-03
-coarse time step 773  old time = 1.932500e+00  old dt = 2.500000e-03
-coarse time step 774  old time = 1.935000e+00  old dt = 2.500000e-03
-coarse time step 775  old time = 1.937500e+00  old dt = 2.500000e-03
-coarse time step 776  old time = 1.940000e+00  old dt = 2.500000e-03
-coarse time step 777  old time = 1.942500e+00  old dt = 2.500000e-03
-coarse time step 778  old time = 1.945000e+00  old dt = 2.500000e-03
-coarse time step 779  old time = 1.947500e+00  old dt = 2.500000e-03
-coarse time step 780  old time = 1.950000e+00  old dt = 2.500000e-03
-coarse time step 781  old time = 1.952500e+00  old dt = 2.500000e-03
-coarse time step 782  old time = 1.955000e+00  old dt = 2.500000e-03
-coarse time step 783  old time = 1.957500e+00  old dt = 2.500000e-03
-coarse time step 784  old time = 1.960000e+00  old dt = 2.500000e-03
-coarse time step 785  old time = 1.962500e+00  old dt = 2.500000e-03
-coarse time step 786  old time = 1.965000e+00  old dt = 2.500000e-03
-coarse time step 787  old time = 1.967500e+00  old dt = 2.500000e-03
-coarse time step 788  old time = 1.970000e+00  old dt = 2.500000e-03
-coarse time step 789  old time = 1.972500e+00  old dt = 2.500000e-03
-coarse time step 790  old time = 1.975000e+00  old dt = 2.500000e-03
-coarse time step 791  old time = 1.977500e+00  old dt = 2.500000e-03
-coarse time step 792  old time = 1.980000e+00  old dt = 2.500000e-03
-coarse time step 793  old time = 1.982500e+00  old dt = 2.500000e-03
-coarse time step 794  old time = 1.985000e+00  old dt = 2.500000e-03
-coarse time step 795  old time = 1.987500e+00  old dt = 2.500000e-03
-coarse time step 796  old time = 1.990000e+00  old dt = 2.500000e-03
-coarse time step 797  old time = 1.992500e+00  old dt = 2.500000e-03
-coarse time step 798  old time = 1.995000e+00  old dt = 2.500000e-03
-coarse time step 799  old time = 1.997500e+00  old dt = 2.500000e-03
-
 => End computation
--> Error norms at time 1.999999999999968e+00
+-> Error norms at time 2.000000000000024e+00
    Component 0: density
-   L1  (error) ------------------------ 6.389729038519328e-06
-   L2  (error) ------------------------ 2.547901714192219e-05
-   max (error) ------------------------ 3.099043515657485e-04
+   L1  (error) ------------------------ 4.245469021819782e-02
+   L2  (error) ------------------------ 4.715047211832553e-02
+   max (error) ------------------------ 6.666234456184572e-02
    Component 1: x-momentum
-   L1  (error) ------------------------ 6.389729036148327e-06
-   L2  (error) ------------------------ 2.547901714191352e-05
-   max (error) ------------------------ 3.099043515630839e-04
+   L1  (error) ------------------------ 4.245469021819771e-02
+   L2  (error) ------------------------ 4.715047211832531e-02
+   max (error) ------------------------ 6.666234456184372e-02
    Component 2: y-momentum
-   L1  (error) ------------------------ 3.194864517999455e-06
-   L2  (error) ------------------------ 1.273950857096696e-05
-   max (error) ------------------------ 1.549521757815420e-04
+   L1  (error) ------------------------ 0.000000000000000e+00
+   L2  (error) ------------------------ 0.000000000000000e+00
+   max (error) ------------------------ 0.000000000000000e+00
    Component 3: energy-density
-   L1  (error) ------------------------ 3.993580646638668e-06
-   L2  (error) ------------------------ 1.592438571370538e-05
-   max (error) ------------------------ 1.936902197261503e-04
-Vector 17QuadratureElement: 96 bytes (0 Mb)
-Vector 21IndicesTransformation: 384 bytes (0 Mb)
-Vector 3Box: -1200 bytes (0 Mb)
-Vector 5TupleI13BlockBoundaryLm4EE: 1152 bytes (0 Mb)
-Vector 6VectorI21IndicesTransformationE: 128 bytes (0 Mb)
-Vector 9BlockInfo: 288 bytes (0 Mb)
-Vector P11NewCoordSys: 32 bytes (0 Mb)
-Vector P7BaseFabI21IndicesTransformation17DefaultArrayAllocIS0_L15ArrayClassIndex1EEE: 32 bytes (0 Mb)
-Vector P7BaseFabIi17DefaultArrayAllocIiL15ArrayClassIndex1EEE: 64 bytes (0 Mb)
+   L1  (error) ------------------------ 2.122734510909912e-02
+   L2  (error) ------------------------ 2.357523605916308e-02
+   max (error) ------------------------ 3.333117228092508e-02
+Vector 17QuadratureElement: 24 bytes (0 Mb)
+Vector 21IndicesTransformation: 24 bytes (0 Mb)
+Vector 3Box: 20 bytes (0 Mb)
+Vector 5TupleI13BlockBoundaryLm4EE: 288 bytes (0 Mb)
+Vector 6VectorI21IndicesTransformationE: 32 bytes (0 Mb)
+Vector 9BlockInfo: 104 bytes (0 Mb)
+Vector N3stc10VectorImplIiLj2ENS_11DefaultImplEEE: 320 bytes (0 Mb)
+Vector P7BaseFabIi17DefaultArrayAllocIiL15ArrayClassIndex1EEE: 16 bytes (0 Mb)
 Vector d: 32 bytes (0 Mb)
 Arena 12DCFlattening: 24 bytes (0 Mb)
-Arena 6CNSIBC: 168 bytes (0 Mb)
+Arena 6CNSIBC: 112 bytes (0 Mb)
 Arena 10CRDPhysics: 40 bytes (0 Mb)
+Arena 9TagMethod: 32 bytes (0 Mb)
+Arena 8TagLevel: 48 bytes (0 Mb)
+Arena 15TagLevelFactory: 64 bytes (0 Mb)
+Arena 25MultiBlockCoordSysFactory: 16 bytes (0 Mb)
 Arena 18MultiBlockCoordSys: 344 bytes (0 Mb)
 Arena 12TurbModeling: 16 bytes (0 Mb)
-Registered class BaseFab<i>: 448 bytes (0.000427246 Mb)
-Registered class BaseFab<21IndicesTransformation>: 1728 bytes (0.00164795 Mb)
+Registered class BaseFab<i>: 108 bytes (0.000102997 Mb)
+Registered class BaseFab<21IndicesTransformation>: 432 bytes (0.000411987 Mb)
 ---------------------------------
-Total Unfreed : 3776 bytes (0 Mb)
-peak memory usage: 13814346 bytes (13 Mb)
+Total Unfreed : 2096 bytes (0 Mb)
+peak memory usage: 2423164 bytes (2 Mb)
+-> Stack deallocation on thread at 0x7ff636fff010 with maximum usage of 1.34569
+   MiB

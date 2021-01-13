@@ -49,12 +49,19 @@ def convergenceFromChordOutput(files, gridSize, dim, output):
         assert errorNames == en
     output(errors, gridSize, dim, componentNames, errorNames)
 
-#files = ['error32.out', 'error64.out', 'error128.out']
-files = ['advect32.out', 'advect64.out', 'advect128.out', 'advect256.out', 'advect512.out']
+files = ['error32.out', 'error64.out', 'error128.out', 'error256.out',
+         'error512.out', 'error1024.out', 'error2048.out', 'error4096.out']
 dim = 2
-#gridSize = [32**dim, 64**dim, 128**dim]
-gridSize = [32**dim, 64**dim, 128**dim, 256**dim, 512**dim]
+gridSize = [32**dim, 64**dim, 128**dim, 256**dim, 512**dim, 1024**dim, 2048**dim, 4096**dim]
 
-# output type needs to be either convergeReport or convergeReportFiles
+# output type needs to be one of:
+#   1. convergeReport
+#         Write the convergence rate report to standard output
+#   2. convergeReportFiles
+#         Write the convergence rate report to files named
+#         '<component-name>.dat'
+#   3. convergeReportLatexTables
+#         Write the convergence rate report in LaTeX format to
+#         files named '<component-name>_latex.dat'
 output_type = convergeReport
 convergenceFromChordOutput(files, gridSize, dim, output_type)

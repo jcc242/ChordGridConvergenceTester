@@ -8,7 +8,7 @@ def convergeRateRatio(error, refRatio):
     assert len(error) == len(refRatio)+1
     assert len(error) >= 2
     assert all(r>0 for r in refRatio)
-    return [log(error[i+1]/error[i])/log(1/refRatio[i]) for i in range(len(error)-1)]
+    return [log(error[i+1]/error[i])/log(1/refRatio[i]) if error[i] != 0 else 0 for i in range(len(error)-1)]
 
 def convergeRateDOF(error, dof, dim):
     assert dim > 0
@@ -68,4 +68,43 @@ def convergeReportFiles(errors, dofs, dim, componentNames, errorNames):
             for col in range(len(printArr)):
                 s+=format(printArr[col][row], 'e') + "\t"
             output_file.write(s + "\n")
+        output_file.close()
+
+def convergeReportLatexTables(errors, dofs, dim, componentNames, errorNames):
+    # process each component separate
+    for c in range(len(componentNames)):
+        printTitles = ["  DoF"]
+        root = lambda x, dim=dim: x^(1./dim)
+        printArr = [list(map(sqrt,dofs))]
+        for e in range(len(errorNames)):
+            er = [errors[r][c][e] for r in range(len(dofs))]
+            rate = convergeRateDOF(er, dofs, dim)
+            printTitles.append(errorNames[e])
+            printArr.append(er)
+        # Print the titles
+        filename = componentNames[c] + "_latex.dat"
+        output_file = open(filename,'w')
+        output_file.write("\\begin{tabular}{c ")
+        for row in range(len(printTitles)):
+            output_file.write("| c ")
+        output_file.write("}\n")
+        s=''
+        for row in range(len(printTitles)):
+           s+=printTitles[row] + " "
+           if row != (len(printTitles)-1):
+               s+= "& "
+        output_file.write(s + "\\\\ \n")
+        output_file.write("  \\hline \n")
+        # Print the table
+        for row in range(len(printArr[0])):
+            s='  '
+            for col in range(len(printArr)):
+                s+=format(printArr[col][row], 'e') + " "
+                if col != (len(printArr)-1):
+                    s+= "& "
+            if row != (len(printArr[0])-1):
+                output_file.write(s + "\\\\ \n")
+            else:
+                output_file.write(s + "\n")
+        output_file.write("\\end{tabular}\n")
         output_file.close()
