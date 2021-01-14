@@ -84,9 +84,11 @@ def convergeReportLatexTables(errors, dofs, dim, componentNames, errorNames):
         # Print the titles
         filename = componentNames[c] + "_latex.dat"
         output_file = open(filename,'w')
-        output_file.write("\\begin{tabular}{c ")
+        output_file.write("\\begin{tabular}{")
         for row in range(len(printTitles)):
-            output_file.write("| c ")
+            output_file.write("c")
+            if row != (len(printTitles)-1):
+                output_file.write(" | ")
         output_file.write("}\n")
         s=''
         for row in range(len(printTitles)):
